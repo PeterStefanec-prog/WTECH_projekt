@@ -1,0 +1,95 @@
+#name-of-shop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* ked je sirka okna mensia ako 400px, upravime to aby to nezasahovalo do nadpisov */
+@media (max-width: 690px) {
+    #name-of-shop {
+        left: 250px;       /* pozícia 200px odľava */
+        transform: none;   /* vypneme posun precentami */
+    }
+}
+
+
+/* horny cierny pruh */
+.top-bar {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+
+/* hlavny navbar */
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Zarovnanie hl. menu na stred */
+.main-menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/*len tak*/
+.navbar-toggler {
+    background-color: gray;
+}
+
+/*aby mali odkazy v menu rovnaku farbu*/
+.menu-item {
+    color: #6c757d; /* Bootstrap sivá */
+    font-weight: normal;
+    transition: color 0.1s ease-in-out;
+}
+
+.menu-item.strong-active {
+    color:white;
+    background-color: black;
+}
+
+/*aktivna polozka v menu je cierna*/
+.menu-item.active {
+    font-weight: bold;
+    color: black;
+}
+
+.name-of-shop {
+    display: flex;
+    justify-content: center; /* Centrovanie do stredu */
+    align-items: center;
+    padding: 10px 0;
+}
+
+
+/*polozky v menu*/
+.menu-item:hover {
+    color: #343a40; /* tmava siva */
+}
+
+.navbar-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px
+}
+
+
+.nav-textfield {
+    width: 150px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+}
+
+.nav-item {
+    /*border: 0.2px solid gray;*/
+    /*border-radius: 5px;*/
+    display: flex;
+    align-items: center;
+}
+
