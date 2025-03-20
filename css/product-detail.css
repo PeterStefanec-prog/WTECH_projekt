@@ -1,0 +1,195 @@
+
+
+/* HEADER */
+header {
+    background-color: #f8f8f8;
+    text-align: left;
+    padding: 2rem 2rem;
+    margin-left: 5rem;
+}
+
+/* CONTAINER: sidebar + main content */
+.container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    /*background-color: red;*/
+}
+
+
+/***************** START OF Filters *****************/
+/* Sidebar (filters) */
+.filters {
+    width: 20%;
+    min-width:15rem;
+    padding: 1.6rem;
+    box-shadow: 0 0 0.4rem #ccc;
+    height: 40rem; /* makes it as tall as the viewport; remove or override for small screens if desired */
+}
+
+/*FILTRE*/
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#filtre {
+    font-size: 1.7rem;
+}
+
+.filters button {
+    border: none;
+    background: none;
+    color: gray;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    text-underline-color: gray;
+}
+
+
+.filter-section {
+    margin-top: 1.5rem;
+}
+
+.filter-section h5 {
+    margin-bottom: 0.5rem;
+}
+
+.filter-section label {
+    font-size: 0.8rem;
+}
+/***************** END OF FILTERS *****************/
+
+
+/*****************************************************/
+/* *****************MAIN CONTENT *****************  */
+main {
+    flex: 1; /* remaining space */
+    /*background-color: green;*/
+}
+
+/* Sort container above the grid */
+.sort-container {
+    display: flex;
+    align-items: flex-end;
+    margin: 20px 20px 0 20px;
+    flex-direction: column;
+    margin-right: 3rem;
+}
+
+.sort-header {
+    border: 1px solid black;
+    padding: 0.6rem;
+    margin: 0;
+}
+
+.sort-container label {
+    margin-right: 8px;
+    color: gray;
+}
+
+#sort-select {
+    border: none;
+    border-radius: 8px;
+}
+
+
+
+/****************** Products grid ******************/
+.product-grid {
+    display: grid;  /* grid for responsivness */
+    gap: 20px;
+    padding: 20px;
+    /* set single column by default (for very small screens) */
+    grid-template-columns: 1fr;
+}
+
+/* At >=600px: 2 columns */
+@media (min-width: 600px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* At >=900px: 3 columns (max columns you want) */
+@media (min-width: 1000px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Product item styling */
+.product-item {
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    color: black;
+}
+
+.product-item {
+    text-decoration: none;
+}
+
+.product-item:hover {
+    /*text-decoration: none;*/
+    color: black;
+}
+
+.product-item:hover {
+    text-decoration: none;
+    border: 1px black solid;
+    border-radius: 2px;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-name {
+    margin: 0.5rem 0;
+    font-weight: bold;
+    text-align: left;
+}
+
+.product-price {
+    color: #666;
+    text-align:left;
+}
+
+/* Pagination */
+.pagination {
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1rem 5rem 1rem;
+}
+
+.page-chooser {
+    border: 1px solid black;
+    padding: 0.5rem;
+}
+
+.pagination a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+
+/* Responsivness for whole container */
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column; /* stack sidebar above the products */
+    }
+    .filters {
+        width: 100%;
+        height: auto; /* override the 100vh for mobile */
+        margin-bottom: 20px;
+
+    }
+}
+
+

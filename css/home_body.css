@@ -5,11 +5,7 @@
 /*    box-sizing: border-box;*/
 /*}*/
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    margin: 0 auto;
-}
+
 /* *************************************************************** */
 /* HERO BANNER SECTION */
 .hero-banner {
@@ -41,7 +37,7 @@ body {
 
 /* HEADER */
 header {
-    background-color: #ccccff; /* Light purple */
+    background-color: #f8f8f8; /* Light purple */
     text-align: center;
     padding: 2rem;
 }

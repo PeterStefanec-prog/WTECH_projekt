@@ -1,10 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/product-detail.css">
+    <link rel="stylesheet" href="css/input-range.css">
+    <title>Adko Petko Market</title>
 </head>
 <body>
+
+
+<!--**************** START OF TOP NAVBAR ********************-->
+<!-- Horny cierny pruh -->
+<div class="top-bar">
+    Až 50% zľava na vybrané produkty do konca augusta
+</div>
+
+<!-- Horny navbar -->
+<nav class="navbar bg-light navbar-light d-flex justify-content-center">
+    <div class="container-fluid justify-content-start">
+        <a href="#" class="nav-link menu-item strong-active">Muži</a>
+        <a href="#" class="nav-link menu-item">Ženy</a>
+        <a href="#" class="nav-link menu-item">Deti</a>
+    </div>
+
+    <!-- Logo -->
+    <div id="name-of-shop">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <img src="images/logo.png" alt="Superobchod" style="height: 40px; margin-right: 5px;">
+            <span style="font-size: 24px; font-weight: bold;">Superobchod</span>
+        </a>
+    </div>
+</nav>
+
+<!-- Hlavna navigacia -->
+<nav class="navbar navbar-expand-xl bg-light navbar-light">
+    <div class="container-fluid justify-content-start">
+        <a href="#" class="nav-link menu-item active">Novinky</a>
+        <a href="#" class="nav-link menu-item">Oblečenie</a>
+        <a href="#" class="nav-link menu-item">Topánky</a>
+        <a href="#" class="nav-link menu-item">Šport</a>
+        <a href="#" class="nav-link menu-item">Streetwear</a>
+        <a href="#" class="nav-link menu-item">Doplnky</a>
+        <a href="#" class="nav-link menu-item">Výpredaj</a>
+
+        <!-- tlacidlo na rozbalenie menu -->
+        <button class="navbar-toggler ms-auto bg-light" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvas-right-navbar"
+                aria-controls="offcanvas-right-navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- navigacne menu -->
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav ms-auto d-flex">
+                <li class="menu-item">
+                    <img src="images/lupa.png" alt="lupa" class="navbar-icon">
+                    <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link" href="#">
+                        <img src="images/kosik.png" alt="Košík" class="navbar-icon">
+                        2 Košík
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link" href="#">
+                        <img src="images/prihlasenie.png" alt="login" class="navbar-icon">
+                        Prihlásenie
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link" href="#">
+                        <img src="images/podpora.png" alt="podpora" class="navbar-icon">
+                        Podpora
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Offcanvas Menu (slides in from right) Duplikat toho hore-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-right-navbar" aria-labelledby="offcanvas-right-navbar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvas-right-navbar-label">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav ms-auto d-flex">
+            <li class="menu-item">
+                <img src="images/lupa.png" alt="lupa" class="navbar-icon">
+                <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
+            </li>
+            <li class="menu-item">
+                <a class="nav-link" href="#">
+                    <img src="images/kosik.png" alt="Košík" class="navbar-icon">
+                    2 Košík
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="nav-link" href="#">
+                    <img src="images/prihlasenie.png" alt="login" class="navbar-icon">
+                    Prihlásenie
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="nav-link" href="#">
+                    <img src="images/podpora.png" alt="podpora" class="navbar-icon">
+                    Podpora
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- ***********************s************* END OF NAVBAR  **************************************************-->
+
+<header>
+    <h2>Najpredávanejšie</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod tempor incidunt ut labore et dolore magna aliqua.</p>
+</header>
+
+<!-- FILTERS ON THE LEFT SIDE -->
+<div class="container">
+    <aside class="filters">
+        <div class="filters-header">
+            <label id="filtre">Filtre</label>
+            <label><button id="reset-filters">Vymaž filtre</button></label>
+        </div>
+        <section class="filter-section">
+            <h5>Farby</h5>
+            <label><input type="checkbox" /> Modrá</label><br>
+            <label><input type="checkbox" /> Zelená</label><br>
+            <label><input type="checkbox" /> Červená</label><br>
+            <label><input type="checkbox" /> Fialová</label>
+        </section>
+        <section class="filter-section">
+            <h5>Značka</h5>
+            <label><input type="checkbox" /> Nike</label><br>
+            <label><input type="checkbox" /> Adidas</label><br>
+            <label><input type="checkbox" /> Puma</label><br>
+            <label><input type="checkbox" /> Reebok</label>
+        </section>
+        <section class="filter-section">
+            <h5>Cena</h5>
+            <input type="range" min="0" max="1000" id="price-range"/>
+            <label for="price-range">Najdrahšie <span id="range-value">500 $</span></label>
+        </section>
+    </aside>
+
+    <main>
+<!-- SORT CONTAINER ABOVE PRODUCTS -->
+        <div class="sort-container">
+            <div class="sort-header">
+                <label for="sort-select">Zoradiť podľa:</label>
+                <select id="sort-select">
+                    <option value="price-asc">Cena: od najnižšej</option>
+                    <option value="price-desc">Cena: od najvyššej</option>
+                    <option value="name-asc">Názov: A-Z</option>
+                    <option value="name-desc">Názov: Z-A</option>
+                </select>
+            </div>
+            <span class="product-count">Zobrazených 9 produktov</span>
+        </div>
+
+        <section class="product-grid">
+<!-- EXAMPLE PRODUCT ITEMS -->
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Bunda_1</div>
+                <div class="product-price">$100</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Bunda_2</div>
+                <div class="product-price">$90</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Tricko_1</div>
+                <div class="product-price">$50</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <a href="product-detail.html" class="product-item">
+                <img src="images/tricko.jpg" alt="tricko" />
+                <div class="product-name">Nohavice_1</div>
+                <div class="product-price">$70</div>
+            </a>
+            <!-- ... more products ... -->
+        </section>
+
+        <nav class="pagination">
+            <div class="page-chooser">
+                <a href="#" id="left-arrow">&larr;</a>
+                <a href="#">Strana 2 z 15</a>
+                <a href="#" id="right-arrow">&rarr;</a>
+            </div>
+        </nav>
+    </main>
+</div>
+
+
+
+<!-- FOOTER -->
+<footer>
+    &copy; 2025 Made with love from xStefanec & xKazimir
+</footer>
+
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--Functionality for input range-->
+<script src="filters.js"></script>
 
 </body>
 </html>
