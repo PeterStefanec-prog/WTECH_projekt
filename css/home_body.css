@@ -1,0 +1,142 @@
+/* Reset and box-sizing */
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0 auto;
+}
+/* *************************************************************** */
+/* HERO BANNER SECTION */
+.hero-banner {
+    width: 97%;          /* Span the full width of the parent container */
+    margin: 1rem auto;     /* Spacing from the navbar (adjust as needed) */
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* The banner image itself */
+.hero-banner img {
+    width: 49%;          /* Make image scale to the container’s width */
+    height: auto;         /* Preserve the aspect ratio */
+    margin: 0 auto;
+    display: block;
+}
+
+/* MEDIA QUERY for smaller screens */
+@media (max-width: 800px) {
+    .hero-banner img {
+        width: 100%; /* Stack images vertically (full width) on small screens */
+    }
+}
+/* *************************************************************** */
+
+
+
+/* HEADER */
+header {
+    background-color: #ccccff; /* Light purple */
+    text-align: center;
+    padding: 2rem;
+}
+
+
+/* MAIN CONTENT */
+main {
+    margin: 2rem 1rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4rem;
+    background-color: transparent;
+
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.shop-all-btn {
+    padding: 8px 16px;
+    color: black;
+    border: 0.1rem solid black;
+    border-radius: 1px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: transparent;
+    width: 10rem;
+}
+
+.shop-all-btn:hover {
+    background-color: lightgray;
+}
+
+
+/* PRODUCT GRID */
+.product-grid {
+    margin: 1rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center; /* Center items if they don't fill entire row */
+    max-width: 1200px;
+}
+
+/* PRODUCT PLACEHOLDER */
+.product-item {
+    background-color: lightgray; /* Light red */
+    flex: 1 1 calc(25% - 1rem); /* 4 columns on large screens */
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* IMAGES: preserve taller aspect ratio */
+.product-item img {
+    width: 100%;
+    height: auto;      /* Keep image ratio automatically */
+    display: block;
+    border-radius: 5px;
+}
+
+/* Product name or any text below the image */
+.product-name {
+    margin-top: 0.5rem;
+    padding: 0.3rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    /*background-color: gray;*/
+    text-align: left;
+    border-radius: 2px;
+
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 800px) {
+    .product-item {
+        flex: 1 1 calc(50% - 1rem); /* 2 columns on smaller screens */
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+

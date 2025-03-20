@@ -1,17 +1,3 @@
-#name-of-shop {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-/* ked je sirka okna mensia ako 400px, upravime to aby to nezasahovalo do nadpisov */
-@media (max-width: 690px) {
-    #name-of-shop {
-        left: 250px;       /* pozícia 200px odľava */
-        transform: none;   /* vypneme posun precentami */
-    }
-}
-
-
 /* horny cierny pruh */
 .top-bar {
     background-color: black;
@@ -21,35 +7,53 @@
     font-size: 14px;
 }
 
+#name-of-shop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* ked je sirka okna mensia ako 400px, upravime to aby to nezasahovalo do nadpisov */
+@media (max-width: 690px) {
+    /* 1) zrusime absolutnu poziciu nadpisu, aby bol v normalon flow */
+    #name-of-shop {
+        position: static;
+        transform: none;
+        margin-bottom: 0.5rem; /* trocha medzery pod nadpisom */
+    }
+
+    /* 2) horny navbar na slpcovy layourt*/
+    nav.navbar.d-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 3) Centerujeme linky a posunieme ich pod nadpis */
+    nav.navbar .container-fluid {
+        order: 2;                  /* zobrazí sa až po #name-of-shop */
+        justify-content: center;   /* centrovanie položiek */
+        width: 100%;
+    }
+}
+
+
 
 /* hlavny navbar */
 .navbar {
     border-bottom: 1px solid #ddd;
 }
 
-/* Zarovnanie hl. menu na stred */
-.main-menu {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
 
-/*len tak*/
-.navbar-toggler {
-    background-color: gray;
-}
 
+/* ********* Uprava ODKAZOV ********* */
 /*aby mali odkazy v menu rovnaku farbu*/
 .menu-item {
     color: #6c757d; /* Bootstrap sivá */
     font-weight: normal;
     transition: color 0.1s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 
-.menu-item.strong-active {
-    color:white;
-    background-color: black;
-}
 
 /*aktivna polozka v menu je cierna*/
 .menu-item.active {
@@ -57,17 +61,9 @@
     color: black;
 }
 
-.name-of-shop {
-    display: flex;
-    justify-content: center; /* Centrovanie do stredu */
-    align-items: center;
-    padding: 10px 0;
-}
-
-
-/*polozky v menu*/
-.menu-item:hover {
-    color: #343a40; /* tmava siva */
+.menu-item.strong-active {
+    color:white;
+    background-color: black;
 }
 
 .navbar-icon {
@@ -78,6 +74,28 @@
     margin-bottom: 5px
 }
 
+.offcanvas .nav-link {
+    color: #6c757d;
+    font-weight: normal;
+}
+
+.offcanvas .nav-link.active{
+    font-weight: bold;
+    color: black;
+}
+
+/* ********* KONIEC ODKAZOV ********* */
+
+
+
+
+/*polozky v menu*/
+.menu-item:hover {
+    color: #343a40; /* tmava siva */
+}
+
+
+
 
 .nav-textfield {
     width: 150px;
@@ -86,10 +104,13 @@
     background-color: transparent;
 }
 
-.nav-item {
-    /*border: 0.2px solid gray;*/
-    /*border-radius: 5px;*/
-    display: flex;
-    align-items: center;
-}
 
+/* FOOTER */
+footer {
+    background-color: black; /* Light green */
+    text-align: center;
+    padding: 0.2rem;
+    /*margin-top: 0.2rem;*/
+    height: 2rem;
+    color:white;
+}
