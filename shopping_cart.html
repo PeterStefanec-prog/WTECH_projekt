@@ -6,7 +6,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/product-body.css">
+  <link rel="stylesheet" href="css/shopping-cart.css">
   <title>Adko Petko Market</title>
 </head>
 <body>
@@ -121,99 +121,90 @@
 <!-- ********************************************* END OF NAVBAR  **************************************************-->
 
 
-
-
 <div class="container">
-  <div class="product-images-grid" >
-     <div class="product-image-div">
-        <img src="images/tricko.jpg" data-src="images/tricko.jpg" alt="tricko" class="product-image">
-     </div>
-    <div class="product-image-div">
-      <img src="images/tricko.jpg" data-src="images/tricko.jpg" alt="tricko" class="product-image">
-    </div>
-    <div class="product-image-div">
-      <img src="images/tricko.jpg" data-src="images/tricko.jpg" alt="tricko" class="product-image">
-    </div>
-    <div class="product-image-div">
-      <img src="images/tricko.jpg" data-src="images/tricko.jpg" alt="tricko" class="product-image">
-    </div>
-  </div>
 
-<!--  Just thumbnail-->
-  <div id="lightbox" class="lightbox">
-    <img class="lightbox-img" src="" alt="">
-  </div>
+  <div class="cart-items">
+    <h2>Tvoj košík</h2>
 
-
-
-  <div class="product-description">
-
-    <h1>
-      Jarna bunda
-    </h1>
-
-    <span id="product-price">100 $</span>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua.
-    </p>
-    <br><br>
-
-    <h3>
-      Size
-    </h3>
-
-
-      <fieldset class="size-selector">
-        <label><input type="radio" name="size" value="S">
-          <span>S</span>
-        </label>
-
-        <label><input type="radio" name="size" value="M">
-          <span>M</span>
-        </label>
-
-        <label><input type="radio" name="size" value="L" checked>
-          <span>L</span>
-        </label>
-
-        <label><input type="radio" name="size" value="XL">
-          <span>XL</span>
-        </label>
-
-      </fieldset>
-
-
-    <div class="product-quantity">
-      <div class="quantity-selector">
-        <button type="button">−</button>
-        <span class="quantity">1</span>
-        <button type="button">+</button>
+    <div class="item">
+      <img alt="Bunda Adidas" src="images/tricko.jpg">
+      <div class="details">
+        <h3>Bunda Adidas</h3>
+        <span>Veľkosť: L</span>
+        <span class="price">$100</span>
       </div>
 
-      <button class="add-to-cart">Pridaj do košíka</button>
-
+        <div class="product-quantity">
+          <div class="quantity-selector ">
+            <button type="button" class="quantity-button">−</button>
+            <span class="quantity">1</span>
+            <button type="button" class="quantity-button">+</button>
+          </div>
+          <span class="remove">Remove</span>
+        </div>
     </div>
+
+
+    <div class="item">
+      <img alt="Bunda Adidas" src="images/tricko.jpg">
+      <div class="details">
+        <h3>Bunda Adidas</h3>
+        <span>Veľkosť: L</span>
+        <span class="price">$100</span>
+      </div>
+
+      <div class="product-quantity">
+        <div class="quantity-selector ">
+          <button type="button" class="quantity-button">−</button>
+          <span class="quantity">1</span>
+          <button type="button" class="quantity-button">+</button>
+        </div>
+        <span class="remove">Remove</span>
+      </div>
+    </div>
+
+
+    <div class="item">
+      <img alt="Bunda Adidas" src="images/tricko.jpg">
+      <div class="details">
+        <h3>Bunda Adidas</h3>
+        <span>Veľkosť: L</span>
+        <span class="price">$100</span>
+      </div>
+
+      <div class="product-quantity">
+        <div class="quantity-selector ">
+          <button type="button" class="quantity-button">−</button>
+          <span class="quantity">1</span>
+          <button type="button" class="quantity-button">+</button>
+        </div>
+        <span class="remove">Remove</span>
+      </div>
+    </div>
+
+
+    <!-- more items -->
+  </div>
+
+  <div class="summary">
+    <h3>Sumár</h3>
+    <div class="subtotal">Medzisúčet:
+      <span>$300</span> bez dopravy
+    </div>
+    <button>Pokračovať na dopravu</button>
   </div>
 
 </div>
 
 
 
-
-<!-- FOOTER -->
-<footer>
-  &copy; 2025 Made with love from xStefanec & xKazimir
-</footer>
-
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Made with love from xStefanec & xKazimir
+  </footer>
 
 
-
-<script src="filters.js"></script>
-<script src="quantities.js"></script>
-<script src="image-zoom.js"></script>
 
 </body>
+<script src="quantities.js"></script>
 </html>

@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial,
+    sans-serif;
+    background: #f4f4f4;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 5rem auto;
+}
+
+/* ******************** START LEFT part of website ****************** */
+.cart-items {
+    flex: 2;    /* twice as much space as sibling */
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+
+}
+
+
+.item {
+    display: flex;
+    align-items: center;
+    /*padding: 1rem;*/
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+}
+
+.item img {
+    width: auto;
+    height: 12rem;
+    background: #ddd;
+    border-radius: 10px;
+}
+
+.details {
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.details h3 {
+    font-size: 1.2rem;
+}
+
+.details span {
+    display: block; /* every element on new line */
+    font-size: .9rem;
+    color: #555;
+}
+
+.price {
+    font-weight: bold;
+    margin-top: .5rem;
+}
+
+.product-quantity {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+}
+
+.quantity-selector button {
+    background: transparent;
+    border: none;
+    padding: 0.2rem 0.2rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.quantity {
+    width: 2rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.remove {
+    font-size: .8rem;
+    text-decoration: underline;
+    cursor: pointer;
+    justify-content: flex-end;
+}
+/* ******************** END LEFT part of website ****************** */
+
+
+.summary {
+    flex: 1;    /* half size of left side of website */
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.summary h3 {
+    margin-bottom: 1rem;
+}
+
+.subtotal {
+    margin-bottom: 1.5rem;
+}
+
+.summary button {
+    width: 100%;
+    padding: .75rem;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
