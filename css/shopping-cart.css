@@ -16,6 +16,7 @@ h1 {
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     max-width: 1200px;
     margin: 5rem auto;
@@ -27,7 +28,7 @@ h1 {
     background: #fff;
     border-radius: 10px;
     padding: 1rem;
-
+    min-width: 30rem;
 }
 
 
@@ -111,6 +112,13 @@ h1 {
     padding: 1.5rem;
     border-radius: 10px;
     height: fit-content;
+    min-width: 18rem;
+}
+
+@media (max-width: 800px) {
+    .product-item {
+        flex: 1 1 calc(50% - 1rem); /* 2 columns on smaller screens */
+    }
 }
 
 .summary h3 {

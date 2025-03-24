@@ -95,7 +95,7 @@ main {
 
 /* PRODUCT PLACEHOLDER */
 .product-item {
-    background-color: lightgray; /* Light red */
+    /*background-color: lightgray; !* Light red *!*/
     flex: 1 1 calc(25% - 1rem); /* 4 columns on large screens */
     padding: 0.5rem;
     text-align: center;
@@ -120,7 +120,14 @@ main {
     /*background-color: gray;*/
     text-align: left;
     border-radius: 2px;
+}
 
+.price {
+    font-weight: bold;
+    color: #333;
+    padding: 0.3rem;
+    text-transform: uppercase;
+    text-align: left;
 }
 
 /* MEDIA QUERIES */
