@@ -7,7 +7,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/checkout-shipping.css">
-  <link rel="stylesheet" href="css/checkout-progress.css"></link>
+  <link rel="stylesheet" href="css/checkout-progress.css">
+  <link rel="stylesheet" href="css/checkout-payment.css">
   <title>Adko Petko Market</title>
 </head>
 <body>
@@ -121,39 +122,57 @@
 
 <!-- ********************************************* END OF NAVBAR  **************************************************-->
 
-
 <main class="container">
   <section class="summary-card">
-    <h1>Zhrnutie objednavky</h1>
-    <div class="progress">
-      <span class="step">Adresa</span>
-      <span class="separator">——————</span>
-      <span class="step active">Doručenie</span>
-      <span class="separator">——————</span>
-      <span class="step">Platba</span>
-    </div>
-    <form>
-      <div class="shipping-option">
-        <label><input type="radio" name="delivery" checked>Packeta kuriér</label>
-        <small>3‑5 Pracovné dni</small>
+  <h1>Zhrnutie objednávky</h1>
+
+  <div class="progress">
+    <span class="step">Adresa</span>
+    <span class="separator">——————</span>
+    <span class="step">Doručenie</span>
+    <span class="separator">——————</span>
+    <span class="step active">Platba</span>
+  </div>
+
+  <form class="payment-form">
+    <fieldset>
+
+
+      <label id="card-holder-name">
+        <input type="text" name="cardholder" placeholder="Meno držiteľa karty" required>
+      </label>
+
+      <label>
+        <input type="text" name="cardnumber" placeholder="Číslo karty" maxlength="19" required>
+      </label>
+
+      <div class="row">
+        <select name="expiry-month" required>
+          <option value="" disabled selected>Mesiac</option>
+          <option>01</option><option>02</option><option>03</option>
+          <option>04</option><option>05</option><option>06</option>
+          <option>07</option><option>08</option><option>09</option>
+          <option>10</option><option>11</option><option>12</option>
+        </select>
+
+        <select name="expiry-year" required>
+          <option value="" disabled selected>Rok</option>
+          <option>2025</option><option>2026</option><option>2027</option>
+          <option>2028</option>
+        </select>
+
+        <input type="text" name="cvc" placeholder="CVC" maxlength="3" required>
       </div>
 
-      <div class="shipping-option">
-        <label><input type="radio" name="delivery">Slovenská pošta kuriér</label>
-        <small>4‑5 Pracovné dni</small>
-      </div>
+      <label>
+        <input type="email" name="email" placeholder="Email" required>
+      </label>
+    </fieldset>
 
-      <button type="submit">Pokračovať k platbe</button>
-    </form>
+    <button type="submit">Zaplať</button>
+  </form>
   </section>
 </main>
-
-
-
-<!-- FOOTER -->
-<footer>
-  &copy; 2025 Made with love from xStefanec & xKazimir
-</footer>
 
 </body>
 </html>

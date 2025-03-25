@@ -18,25 +18,6 @@
     margin-bottom: 1rem;
 }
 
-.summary-card h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-}
-
-.progress {
-    display: inline-flex;
-    align-items: center;
-    font-weight: normal;
-    margin-bottom: 2rem;
-    background: transparent;
-    font-size: 0.9rem;
-}
-
-.progress .step {
-    padding: 0 0.5rem;
-}
-
-
 .shipping-option {
     border: 2px solid #111;
     border-radius: 8px;
@@ -58,9 +39,6 @@
     font-size: .85rem;
     color: #444;
 }
-    .progress .active {
-        font-weight: bold;
-    }
 
     /* Default “unselected” appearance */
     .shipping-option:not(:has(input:checked)) {
