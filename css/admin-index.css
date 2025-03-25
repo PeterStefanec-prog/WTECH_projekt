@@ -10,17 +10,15 @@
 #add_product img {
     width: 60%;
     margin: auto;
+    box-shadow: none;
 }
 
 #add_product {
     display: flex;
-    border-radius: 10px;
     height: 25rem;
     width: 17rem;
-    background-color: gray;
     align-items: center;
     justify-content: center;
-
     padding: 2rem;
     background: #fff;
     border-radius: 10px;

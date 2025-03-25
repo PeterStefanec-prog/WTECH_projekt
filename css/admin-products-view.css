@@ -1,0 +1,30 @@
+/*.admin-product-delete, .admin-product-edit {*/
+/*    width: 4rem;*/
+/*    height: 4rem;*/
+/*    border: none;*/
+/*    background: transparent;*/
+/*    box-shadow: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.admin-product-edit,
+.admin-product-delete {
+    position: absolute;
+    bottom: 1.5rem;
+    width: 2.3rem;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.admin-product-delete:hover,
+.admin-product-edit:hover {
+    animation: ease-in;
+    width: 2.7rem;
+}
+
+
+
+.admin-product-edit { right: 3rem; }
+.admin-product-delete  { right: 0.5rem; }
