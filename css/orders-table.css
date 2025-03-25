@@ -36,3 +36,13 @@
 .orders-table tbody tr:hover {
     background-color: #fafafa;
 }
+
+
+@media (max-width: 800px) {
+    /* Example: hide a column on very small screens */
+    .orders-table th:nth-child(1),
+    .orders-table td:nth-child(1) {
+        display: none;
+    }
+}
+
