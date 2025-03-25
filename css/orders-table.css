@@ -1,0 +1,38 @@
+
+/* Orders Section Styles */
+.orders-section {
+    padding: 5rem;
+    /*background: red;*/
+    margin-top: 4rem;
+}
+
+.orders-section h2 {
+    margin-bottom: 1rem;
+}
+
+/* Table Styles */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.orders-table thead {
+    background-color: #f2f2f2;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.orders-table th {
+    font-weight: bold;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #fafafa;
+}
