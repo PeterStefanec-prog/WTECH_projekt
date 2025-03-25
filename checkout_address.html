@@ -134,17 +134,17 @@
         </div>
         <form class="address-form">
             <div class="name-fields">
-                <input type="text" placeholder="Meno">
-                <input type="text" placeholder="Priezvisko">
+                <input type="text" placeholder="Meno" required>
+                <input type="text" placeholder="Priezvisko" required>
             </div>
-            <input type="text" placeholder="Adresa">
-            <input type="text" placeholder="Mesto">
+            <input type="text" placeholder="Adresa" required>
+            <input type="text" placeholder="Mesto" required>
             <div class="postcode-row">
                 <select>
                     <option>Slovensko</option>
                     <option>Česká republika</option>
                 </select>
-                <input type="text" placeholder="PSČ">
+                <input type="text" placeholder="PSČ" required>
             </div>
             <textarea placeholder="Dodatočné info"></textarea>
             <button type="submit">Pokračovať k doprave</button>
@@ -163,4 +163,8 @@
 
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </html>
