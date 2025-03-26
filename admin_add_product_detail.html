@@ -7,6 +7,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/add_product_body.css">
+    <link rel="stylesheet" href="css/size-selector.css">
     <title>Adko Petko Market</title>
 </head>
 <body>
@@ -119,6 +120,7 @@
 
 <!-- ********************************************* END OF NAVBAR  **************************************************-->
 
+<h1 class="section-title">Nový produkt</h1>
 
 <div class="container">
     <div class="product-images-grid" >
@@ -145,49 +147,69 @@
 
     <div class="product-description">
 
-        <h1>
-            Jarna bunda
-        </h1>
 
-        <span id="product-price">100 $</span>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-        </p>
-        <br><br>
+            <label for="nazov" class="desc-labels" >Názov</label>
+            <input id="nazov" class="form-control mb-3" type="text" placeholder="Názov produktu...">
 
-        <h3>
-            Size
-        </h3>
+            <div class="mb-3">
+                <label class="desc-labels">Pohlavie</label><br>
+                <label><input type="checkbox"> Ženy</label>
+                <label><input type="checkbox"> Muži</label>
+                <label><input type="checkbox"> Deti</label>
+            </div>
 
+        <div class="d-flex justify-content-between mb-3">
+            <div class="type-column">
+                <label class="desc-labels">Typ</label>
+                <ul class="type-list">
+                    <li data-value="obleczenie" class="selected">Oblečenie</li>
+                    <li data-value="topanky">Topánky</li>
+                    <li data-value="sport">Šport</li>
+                    <li data-value="streetwear">Streetwear</li>
+                    <li data-value="doplnky">Doplnky</li>
+                    <li data-value="designer">Designer</li>
+                </ul>
+                <input type="hidden" id="typ-produktu" name="typ" value="obleczenie">
+            </div>
 
-        <fieldset class="size-selector">
-            <label><input type="radio" name="size" value="S">
-                <span>S</span>
-            </label>
+            <div style="width: 50%;">
+                <label class="desc-labels" for="farba">Farba</label>
+                <select id="farba" class="form-control mb-1">
+                    <option value="cervena">Červená</option>
+                    <option value="modra">Modrá</option>
+                    <option value="zelena">Zelená</option>
+                    <option value="cierna">Čierna</option>
+                    <option value="biela">Biela</option>
+                </select>
 
-            <label><input type="radio" name="size" value="M">
-                <span>M</span>
-            </label>
-
-            <label><input type="radio" name="size" value="L" checked>
-                <span>L</span>
-            </label>
-
-            <label><input type="radio" name="size" value="XL">
-                <span>XL</span>
-            </label>
-
-        </fieldset>
-
-
-        <div class="product-quantity">
-
-            <button class="add-to-cart">Pridaj</button>
-
+            </div>
         </div>
+
+
+        <label class="desc-labels">Veľkosti</label>
+            <fieldset class="size-selector">
+                <label><input type="radio" name="size" value="S">
+                <span>S</span>
+                </label>
+
+                <label><input type="radio" name="size" value="M">
+                <span>M</span>
+                </label>
+
+                <label><input type="radio" name="size" value="L" checked>
+                    <span>L</span>
+                </label>
+
+                <label><input type="radio" name="size" value="XL">
+                <span>XL</span>
+                </label>
+
+            </fieldset>
+
+            <label for="popis" class="desc-labels">Popis</label>
+            <textarea id="popis" class="form-control mb-3" rows="4" placeholder="Popis produktu..."></textarea>
+
+            <button class="add-to-store">Pridať</button>
     </div>
 
 </div>
@@ -202,6 +224,7 @@
 <script src="javascript-files/filters.js"></script>
 <script src="javascript-files/quantities.js"></script>
 <script src="javascript-files/image-zoom.js"></script>
+<script src="javascript-files/type-selector.js"></script>
 
 </body>
 </html>

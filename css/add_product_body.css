@@ -1,3 +1,12 @@
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem 0 2rem 0;
+    text-align: center;
+}
+
+
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -15,7 +24,7 @@
 /* ******************** IMAGES ON THE LEFT ******************* */
 .product-images-grid {
     flex: 1 1 40%;
-    max-width: 40%;
+    /*max-width: 40%;*/
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -23,7 +32,7 @@
 }
 
 /* At >=800px: 2 columns */
-@media (max-width: 400px) {
+@media (max-width: 1000px) {
     .product-images-grid {
         grid-template-columns: repeat(1, 1fr);
     }
@@ -66,10 +75,16 @@
 
 /* ********************  ******************* ******************* */
 
+/* PRODUCT PARAMETERS */
 
+.desc-labels {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+}
 
 .product-description {
-    padding: 5rem;
+    padding: 0rem 5rem;
     background-color: transparent;
     /*margin-left: 7rem;*/
     flex: 1 1 50%;
@@ -94,49 +109,42 @@
 }
 }
 
-
-
-
-
-
-
-.product-quantity {
-    margin-top: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5rem;
-
+.type-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
 }
 
-.add-to-cart {
-    flex: 1 1 200px;
-    padding: 1rem;
+.type-list li {
+    cursor: pointer;
+    padding: 0.2rem 0;
+    color: #222;
+    transition: 0.2s;
+}
+
+.type-list li.selected {
+    color: green;
+    font-weight: bold;
+}
+
+
+.add-to-store {
+    padding: 0.75rem 2rem;
     font-size: 1rem;
     background: #000;
     color: #fff;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
+
+    width: 100%; /* rozšíri sa na max šírku rodiča */
+    align-self: flex-start; /* zarovná doľava */
 }
 
-.quantity-selector {
-    display: flex;
-    align-items: center;
-    border: 1px solid #000;
-}
 
-.quantity-selector button {
-    background: transparent;
-    border: none;
-    padding: 0.5rem 0.5rem;
-    font-size: 1.25rem;
-    cursor: pointer;
-}
 
-.quantity {
-    width: 2rem;
-    text-align: center;
-    font-size: 1rem;
-}
+
+
 
 
 
