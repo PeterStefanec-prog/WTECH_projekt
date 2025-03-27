@@ -187,26 +187,15 @@
 
 
         <label class="desc-labels">Veľkosti</label>
-            <fieldset class="size-selector">
-                <label><input type="radio" name="size" value="S">
-                <span>S</span>
-                </label>
+        <fieldset class="size-selector">
+            <label><input type="checkbox" name="size" value="S"><span>S</span></label>
+            <label><input type="checkbox" name="size" value="M"><span>M</span></label>
+            <label><input type="checkbox" name="size" value="L"><span>L</span></label>
+            <label><input type="checkbox" name="size" value="XL"><span>XL</span></label>
+        </fieldset>
 
-                <label><input type="radio" name="size" value="M">
-                <span>M</span>
-                </label>
 
-                <label><input type="radio" name="size" value="L" checked>
-                    <span>L</span>
-                </label>
-
-                <label><input type="radio" name="size" value="XL">
-                <span>XL</span>
-                </label>
-
-            </fieldset>
-
-            <label for="popis" class="desc-labels">Popis</label>
+        <label for="popis" class="desc-labels">Popis</label>
             <textarea id="popis" class="form-control mb-3" rows="4" placeholder="Popis produktu..."></textarea>
 
             <button class="add-to-store">Pridať</button>
