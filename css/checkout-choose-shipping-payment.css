@@ -67,3 +67,19 @@
     button:hover {
         opacity: 0.9;
     }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main.container {
+    flex: 1;
+}
+.navbar-toggler {
+    width: auto !important; /* zabráni tomu, aby sa roztiahlo */
+    padding: 0.25rem 0.5rem; /* trocha medzier */
+    border: none;
+    box-shadow: none;
+}

@@ -57,31 +57,20 @@
 
         <!-- navigacne menu -->
         <div class="collapse navbar-collapse justify-content-end" id="navmenu">
-            <ul class="navbar-nav ms-auto d-flex">
-                <li class="menu-item">
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+                <li class="menu-item d-flex align-items-center">
                     <img src="images/lupa.png" alt="lupa" class="navbar-icon">
                     <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
                 </li>
-                <li class="menu-item active">
-                    <a class="nav-link" href="#">
-                        <img src="images/kosik.png" alt="Košík" class="navbar-icon">
-                        <span>2 Košík</span>
-                    </a>
+                <li class="menu-item d-flex align-items-center ms-3">
+                    <span style="font-weight: bold;">STE PRIHLÁSENÝ AKO ADMIN</span>
                 </li>
-                <li class="menu-item">
-                    <a class="nav-link" href="#">
-                        <img src="images/prihlasenie.png" alt="login" class="navbar-icon">
-                        Prihlásenie
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a class="nav-link" href="#">
-                        <img src="images/podpora.png" alt="podpora" class="navbar-icon">
-                        Podpora
-                    </a>
+                <li class="menu-item d-flex align-items-center ms-3">
+                    <button class="btn btn-dark btn-sm">Odhlásiť sa</button>
                 </li>
             </ul>
         </div>
+
     </div>
 </nav>
 
@@ -93,31 +82,20 @@
                 aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <ul class="navbar-nav ms-auto d-flex">
-            <li class="menu-item">
+        <ul class="navbar-nav ms-auto d-flex flex-column align-items-start">
+            <li class="menu-item d-flex align-items-center mb-3">
                 <img src="images/lupa.png" alt="lupa" class="navbar-icon">
                 <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
             </li>
-            <li class="menu-item">
-                <a class="nav-link" href="#">
-                    <img src="images/kosik.png" alt="Košík" class="navbar-icon">
-                    2 Košík
-                </a>
+            <li class="menu-item mb-2">
+                <span style="font-weight: bold;">STE PRIHLÁSENÝ AKO ADMIN</span>
             </li>
             <li class="menu-item">
-                <a class="nav-link" href="#">
-                    <img src="images/prihlasenie.png" alt="login" class="navbar-icon">
-                    Prihlásenie
-                </a>
-            </li>
-            <li class="menu-item">
-                <a class="nav-link" href="#">
-                    <img src="images/podpora.png" alt="podpora" class="navbar-icon">
-                    Podpora
-                </a>
+                <button class="btn btn-dark btn-sm">Odhlásiť sa</button>
             </li>
         </ul>
     </div>
+
 </div>
 
 <!-- ********************************************* END OF NAVBAR  **************************************************-->
