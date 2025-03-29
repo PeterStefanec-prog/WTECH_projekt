@@ -25,4 +25,64 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+.admin-product-edit,
+.admin-product-delete {
+    position: absolute;
+    bottom: 1.5rem;
+    width: 2.3rem;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.admin-product-delete:hover,
+.admin-product-edit:hover {
+    animation: ease-in;
+    width: 2.7rem;
+}
+
+
+
+.admin-product-edit { right: 3rem; }
+.admin-product-delete  { right: 0.5rem; }
+
+.product-item {
+    position: relative; /* Dôležité pre pozíciu tlačidiel */
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.admin-product-edit,
+.admin-product-delete {
+    position: absolute;
+    bottom: 0.8rem;
+    width: 2rem;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.admin-product-edit:hover,
+.admin-product-delete:hover {
+    width: 2.4rem;
+}
+
+.admin-product-edit {
+    right: 2.8rem;
+}
+
+.admin-product-delete {
+    right: 0.8rem;
+}
+
+
 

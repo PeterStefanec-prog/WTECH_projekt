@@ -21,9 +21,9 @@
 <!-- Horny navbar -->
 <nav class="navbar bg-light navbar-light d-flex justify-content-center">
     <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link menu-item strong-active">Muži</a>
-        <a href="#" class="nav-link menu-item">Ženy</a>
-        <a href="#" class="nav-link menu-item">Deti</a>
+        <a href="#" class="nav-link gender-item strong-active">Muži</a>
+        <a href="#" class="nav-link gender-item">Ženy</a>
+        <a href="#" class="nav-link gender-item">Deti</a>
     </div>
 
     <!-- Logo -->
@@ -38,13 +38,13 @@
 <!-- Hlavna navigacia -->
 <nav class="navbar navbar-expand-xl bg-light navbar-light">
     <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link menu-item active">Novinky</a>
-        <a href="#" class="nav-link menu-item">Oblečenie</a>
-        <a href="#" class="nav-link menu-item">Topánky</a>
-        <a href="#" class="nav-link menu-item">Šport</a>
-        <a href="#" class="nav-link menu-item">Streetwear</a>
-        <a href="#" class="nav-link menu-item">Doplnky</a>
-        <a href="#" class="nav-link menu-item">Výpredaj</a>
+        <a href="#" class="nav-link category-item active"  onclick="window.location.href='admin_index.html'">Novinky</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Oblečenie</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Topánky</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Šport</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Streetwear</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Doplnky</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Výpredaj</a>
 
         <!-- tlacidlo na rozbalenie menu -->
         <button class="navbar-toggler ms-auto bg-light" type="button"
@@ -64,7 +64,7 @@
                     <span style="font-weight: bold;">STE PRIHLÁSENÝ AKO ADMIN</span>
                 </li>
                 <li class="menu-item d-flex align-items-center ms-3">
-                    <button class="btn btn-dark btn-sm">Odhlásiť sa</button>
+                    <button class="btn btn-dark btn-sm" onclick="window.location.href='index.html'">Odhlásiť sa</button>
                 </li>
             </ul>
         </div>
@@ -179,7 +179,7 @@
         <label for="popis" class="desc-labels">Popis</label>
             <textarea id="popis" class="form-control mb-3" rows="4" placeholder="Popis produktu..."></textarea>
 
-            <button class="add-to-store">Pridať</button>
+            <button class="add-to-store" onclick="window.location.href='admin_index.html'">Pridať</button>
     </div>
 
 </div>
@@ -195,6 +195,8 @@
 <script src="javascript-files/quantities.js"></script>
 <script src="javascript-files/image-zoom.js"></script>
 <script src="javascript-files/type-selector.js"></script>
+<script src="javascript-files/navbar.js"></script>
+
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

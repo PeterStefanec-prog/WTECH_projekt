@@ -14,7 +14,7 @@
 <body>
 
 
-<!--**************** START OF TOP NAVBAR ********************-->
+<!--**************** START OF TOP ADMIN NAVBAR ********************-->
 <!-- Horny cierny pruh -->
 <div class="top-bar">
     Až 50% zľava na vybrané produkty do konca augusta
@@ -40,13 +40,13 @@
 <!-- Hlavna navigacia -->
 <nav class="navbar navbar-expand-xl bg-light navbar-light">
     <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link menu-item active">Novinky</a>
-        <a href="#" class="nav-link menu-item">Oblečenie</a>
-        <a href="#" class="nav-link menu-item">Topánky</a>
-        <a href="#" class="nav-link menu-item">Šport</a>
-        <a href="#" class="nav-link menu-item">Streetwear</a>
-        <a href="#" class="nav-link menu-item">Doplnky</a>
-        <a href="#" class="nav-link menu-item">Výpredaj</a>
+        <a href="#" class="nav-link menu-item active" onclick="window.location.href='index.html'" >Novinky</a>
+        <a href="#" class="nav-link menu-item" onclick="window.location.href='admin_index.html'">Oblečenie</a>
+        <a href="#" class="nav-link menu-item" onclick="window.location.href='admin_index.html'">Topánky</a>
+        <a href="#" class="nav-link menu-item" onclick="window.location.href='admin_index.html'">Šport</a>
+        <a href="#" class="nav-link menu-item" onclick="window.location.href='admin_index.html'">Streetwear</a>
+        <a href="#" class="nav-link menu-item" onclick="window.location.href='admin_index.html'">Doplnky</a>
+        <a href="#" class="nav-link menu-item" onclick="window.location.href='admin_index.html'">Výpredaj</a>
 
         <!-- tlacidlo na rozbalenie menu -->
         <button class="navbar-toggler ms-auto bg-light" type="button"
@@ -66,7 +66,7 @@
                     <span style="font-weight: bold;">STE PRIHLÁSENÝ AKO ADMIN</span>
                 </li>
                 <li class="menu-item d-flex align-items-center ms-3">
-                    <button class="btn btn-dark btn-sm">Odhlásiť sa</button>
+                    <button class="btn btn-dark btn-sm" onclick="window.location.href='index.html'">Odhlásiť sa</button>
                 </li>
             </ul>
         </div>
@@ -294,6 +294,8 @@
         crossorigin="anonymous"></script>
 <!--Functionality for input range-->
 <script src="javascript-files/filters.js"></script>
+<script src="javascript-files/navbar.js"></script>
+
 
 </body>
 </html>

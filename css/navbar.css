@@ -1,9 +1,8 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     margin: 0 auto;
-    padding:0;
+    padding: 0;
 }
 
 /* horny cierny pruh */
@@ -20,91 +19,78 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
-/* ked je sirka okna mensia ako 400px, upravime to aby to nezasahovalo do nadpisov */
+
+/* Responzívna úprava pre menšie obrazovky */
 @media (max-width: 690px) {
-    /* 1) zrusime absolutnu poziciu nadpisu, aby bol v normalon flow */
     #name-of-shop {
         position: static;
         transform: none;
-        margin-bottom: 0.5rem; /* trocha medzery pod nadpisom */
+        margin-bottom: 0.5rem;
     }
 
-    /* 2) horny navbar na slpcovy layourt*/
     nav.navbar.d-flex {
         flex-direction: column;
         align-items: center;
     }
 
-    /* 3) Centerujeme linky a posunieme ich pod nadpis */
     nav.navbar .container-fluid {
-        order: 2;                  /* zobrazí sa až po #name-of-shop */
-        justify-content: center;   /* centrovanie položiek */
+        order: 2;
+        justify-content: center;
         width: 100%;
     }
 }
-
-
 
 /* hlavny navbar */
 .navbar {
     border-bottom: 1px solid #ddd;
 }
 
-
-
-/* ********* Uprava ODKAZOV ********* */
-/*aby mali odkazy v menu rovnaku farbu*/
-.menu-item {
-    color: #6c757d; /* Bootstrap sivá */
+/* --------------- GENDER (Muži / Ženy / Deti) ---------------- */
+.gender-item {
+    color: #6c757d;
     font-weight: normal;
     transition: color 0.1s ease-in-out;
     display: flex;
     align-items: center;
 }
 
+.gender-item.strong-active {
+    color: white;
+    background-color: black;
+}
 
-/*aktivna polozka v menu je cierna*/
-.menu-item.active {
+.gender-item:hover {
+    color: #343a40;
+}
+
+/* --------------- CATEGORY (Novinky / Oblečenie / ...) ---------------- */
+.category-item {
+    color: #6c757d;
+    font-weight: normal;
+    transition: color 0.1s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.category-item.active {
     font-weight: bold;
     color: black;
 }
 
-.menu-item.strong-active {
-    color:white;
-    background-color: black;
+.category-item:hover {
+    color: #343a40;
 }
 
+/* Ikonky */
 .navbar-icon {
     width: 15px;
     height: 15px;
     margin-right: 5px;
     margin-left: 5px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
-.offcanvas .nav-link {
-    color: #6c757d;
-    font-weight: normal;
-}
-
-.offcanvas .nav-link.active{
-    font-weight: bold;
-    color: black;
-}
-
-/* ********* KONIEC ODKAZOV ********* */
-
-
-
-
-/*polozky v menu*/
-.menu-item:hover {
-    color: #343a40; /* tmava siva */
-}
-
-
-
-
+/* Vyhľadávacie pole */
 .nav-textfield {
     width: 150px;
     height: 30px;
@@ -112,14 +98,23 @@ body {
     background-color: transparent;
 }
 
+/* Offcanvas menu */
+.offcanvas .nav-link {
+    color: #6c757d;
+    font-weight: normal;
+}
 
-/* FOOTER */
+.offcanvas .nav-link.active {
+    font-weight: bold;
+    color: black;
+}
+
+/* Footer */
 footer {
-    background-color: black; /* Light green */
+    background-color: black;
     text-align: center;
     padding: 0.2rem;
-    /*margin-top: 0.2rem;*/
     height: 2rem;
-    color:white;
+    color: white;
     margin-top: 5rem;
 }
