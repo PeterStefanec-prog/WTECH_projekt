@@ -21,9 +21,9 @@
 <!-- Horny navbar -->
 <nav class="navbar bg-light navbar-light d-flex justify-content-center">
     <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link menu-item strong-active">Muži</a>
-        <a href="#" class="nav-link menu-item">Ženy</a>
-        <a href="#" class="nav-link menu-item">Deti</a>
+        <a href="#" class="nav-link gender-item strong-active">Muži</a>
+        <a href="#" class="nav-link gender-item">Ženy</a>
+        <a href="#" class="nav-link gender-item">Deti</a>
     </div>
 
     <!-- Logo -->
@@ -38,13 +38,13 @@
 <!-- Hlavna navigacia -->
 <nav class="navbar navbar-expand-xl bg-light navbar-light">
     <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link menu-item active">Novinky</a>
-        <a href="#" class="nav-link menu-item">Oblečenie</a>
-        <a href="#" class="nav-link menu-item">Topánky</a>
-        <a href="#" class="nav-link menu-item">Šport</a>
-        <a href="#" class="nav-link menu-item">Streetwear</a>
-        <a href="#" class="nav-link menu-item">Doplnky</a>
-        <a href="#" class="nav-link menu-item">Výpredaj</a>
+        <a href="#" class="nav-link category-item"  onclick="window.location.href='index.html'">Novinky</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='products-view.html'">Oblečenie</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='products-view.html'">Topánky</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='products-view.html'">Šport</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='products-view.html'">Streetwear</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='products-view.html'">Doplnky</a>
+        <a href="#" class="nav-link category-item" onclick="window.location.href='products-view.html'">Výpredaj</a>
 
         <!-- tlacidlo na rozbalenie menu -->
         <button class="navbar-toggler ms-auto bg-light" type="button"
@@ -56,18 +56,19 @@
         <!-- navigacne menu -->
         <div class="collapse navbar-collapse justify-content-end" id="navmenu">
             <ul class="navbar-nav ms-auto d-flex">
-                <li class="menu-item">
+                <li class="menu-item d-flex align-items-center search-group">
                     <img src="images/lupa.png" alt="lupa" class="navbar-icon">
                     <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
                 </li>
+
                 <li class="menu-item active">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="shopping_cart.html">
                         <img src="images/kosik.png" alt="Košík" class="navbar-icon">
                         <span>2 Košík</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="login-page.html">
                         <img src="images/prihlasenie.png" alt="login" class="navbar-icon">
                         Prihlásenie
                     </a>
@@ -92,18 +93,18 @@
     </div>
     <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto d-flex">
-            <li class="menu-item">
+            <li class="menu-item d-flex align-items-center search-group">
                 <img src="images/lupa.png" alt="lupa" class="navbar-icon">
                 <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
             </li>
             <li class="menu-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="shopping_cart.html">
                     <img src="images/kosik.png" alt="Košík" class="navbar-icon">
                     2 Košík
                 </a>
             </li>
             <li class="menu-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="login-page.html">
                     <img src="images/prihlasenie.png" alt="login" class="navbar-icon">
                     Prihlásenie
                 </a>
@@ -136,9 +137,9 @@
             <input type="text" placeholder="Mesto" required>
             <input type="password" placeholder="Heslo" required>
 
-            <button type="submit" class="btn">Registrovať sa</button>
+            <button type="submit" class="btn"onclick="window.location.href='index.html'">Registrovať sa</button>
 
-            <button type="button" class="login-link">alebo sa prihlásiť</button>
+            <button type="button" class="login-link" onclick="window.location.href='login-page.html'">alebo sa prihlásiť</button>
 
 
         </form>
