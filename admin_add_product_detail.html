@@ -104,7 +104,7 @@
 
 
 <main class="container">
-    <div class="product-images-grid" >
+    <section class="product-images-grid" >
         <div class="product-image-div">
             <img src="images/add_new.svg" data-src="images/add_new.jpg" alt="add_new" class="product-image">
         </div>
@@ -117,7 +117,7 @@
         <div class="product-image-div">
             <img src="images/add_new.svg" data-src="images/add_new.svg" alt="add_new" class="product-image">
         </div>
-    </div>
+    </section>
 
     <!--  Just thumbnail-->
     <div id="lightbox" class="lightbox">
@@ -126,22 +126,20 @@
 
 
 
-    <div class="product-description">
+    <section class="product-description">
+        <h2 for="nazov" class="desc-labels" >Názov</h2>
+        <input id="nazov" class="form-control mb-3" type="text" placeholder="Názov produktu...">
 
-
-            <label for="nazov" class="desc-labels" >Názov</label>
-            <input id="nazov" class="form-control mb-3" type="text" placeholder="Názov produktu...">
-
-            <div class="mb-3">
-                <label class="desc-labels">Pohlavie</label><br>
-                <label><input type="checkbox"> Ženy</label>
-                <label><input type="checkbox"> Muži</label>
-                <label><input type="checkbox"> Deti</label>
-            </div>
+        <section class="mb-3">
+            <h2 class="desc-labels">Pohlavie</h2><br>
+            <label><input type="checkbox"> Ženy</label>
+            <label><input type="checkbox"> Muži</label>
+            <label><input type="checkbox"> Deti</label>
+        </section>
 
         <div class="d-flex justify-content-between mb-3">
             <div class="type-column">
-                <label class="desc-labels">Typ</label>
+                <h2 class="desc-labels">Typ</h2>
                 <ul class="type-list">
                     <li data-value="obleczenie" class="selected">Oblečenie</li>
                     <li data-value="topanky">Topánky</li>
@@ -154,7 +152,7 @@
             </div>
 
             <div style="width: 50%;">
-                <label class="desc-labels" for="farba">Farba</label>
+                <h2 class="desc-labels" for="farba">Farba</h2>
                 <select id="farba" class="form-control mb-1">
                     <option value="cervena">Červená</option>
                     <option value="modra">Modrá</option>
@@ -167,7 +165,7 @@
         </div>
 
 
-        <label class="desc-labels">Veľkosti</label>
+        <h2 class="desc-labels">Veľkosti</h2>
         <fieldset class="size-selector">
             <label><input type="checkbox" name="size" value="S"><span>S</span></label>
             <label><input type="checkbox" name="size" value="M"><span>M</span></label>
@@ -176,11 +174,11 @@
         </fieldset>
 
 
-        <label for="popis" class="desc-labels">Popis</label>
+        <h2 for="popis" class="desc-labels">Popis</h2>
             <textarea id="popis" class="form-control mb-3" rows="4" placeholder="Popis produktu..."></textarea>
 
             <button class="add-to-store" onclick="window.location.href='admin_index.html'">Pridať</button>
-    </div>
+    </section>
 
 </main>
 

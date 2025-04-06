@@ -125,47 +125,49 @@
 
 
 <header>
-    <h2>Najpredávanejšie</h2>
+    <h1>Najpredávanejšie</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod tempor incidunt ut labore et dolore magna aliqua.</p>
 </header>
 
 <!-- FILTERS ON THE LEFT SIDE -->
-<div class="container">
-    <form class="filters">
-        <div class="filters-header">
-            <label id="filtre">Filtre</label>
-            <label><button id="reset-filters">Vymaž filtre</button></label>
-        </div>
+<main class="container">
+    <aside class="filters">
+        <form>
+            <div class="filters-header">
+                <h2 id="filtre">Filtre</h2>
+                <label><button id="reset-filters">Vymaž filtre</button></label>
+            </div>
 
-        <fieldset class="filter-section">
-            <h5>Farby</h5>
-            <label><input type="checkbox" /> Modrá</label><br>
-            <label><input type="checkbox" /> Zelená</label><br>
-            <label><input type="checkbox" /> Červená</label><br>
-            <label><input type="checkbox" /> Fialová</label>
-        </fieldset>
+            <fieldset class="filter-section">
+                <h3>Farby</h3>
+                <label><input type="checkbox" /> Modrá</label><br>
+                <label><input type="checkbox" /> Zelená</label><br>
+                <label><input type="checkbox" /> Červená</label><br>
+                <label><input type="checkbox" /> Fialová</label>
+            </fieldset>
 
-        <fieldset class="filter-section">
-            <h5>Značka</h5>
-            <label><input type="checkbox" /> Nike</label><br>
-            <label><input type="checkbox" /> Adidas</label><br>
-            <label><input type="checkbox" /> Puma</label><br>
-            <label><input type="checkbox" /> Reebok</label>
-        </fieldset>
+            <fieldset class="filter-section">
+                <h3>Značka</h3>
+                <label><input type="checkbox" /> Nike</label><br>
+                <label><input type="checkbox" /> Adidas</label><br>
+                <label><input type="checkbox" /> Puma</label><br>
+                <label><input type="checkbox" /> Reebok</label>
+            </fieldset>
 
-        <fieldset class="filter-section">
-            <h5>Cena</h5>
-            <input type="range" min="0" max="1000" id="price-range"/>
-            <label for="price-range">Najdrahšie <span id="range-value">500 $</span></label>
-        </fieldset>
+            <fieldset class="filter-section">
+                <h3>Cena</h3>
+                <input type="range" min="0" max="1000" id="price-range"/>
+                <label for="price-range">Najdrahšie <span id="range-value">500 $</span></label>
+            </fieldset>
 
-<!--         mozno aj button  ale netreba -->
-<!--        <button type="submit" class="apply-filters">Použiť filtre</button>-->
-    </form>
+    <!--         mozno aj button  ale netreba -->
+    <!--        <button type="submit" class="apply-filters">Použiť filtre</button>-->
+        </form>
+    </aside>
 
-    <main>
+    <section class="right-section">
 <!-- SORT CONTAINER ABOVE PRODUCTS -->
-        <div class="sort-container">
+        <section class="sort-container">
             <div class="sort-header">
                 <label for="sort-select">Zoradiť podľa:</label>
                 <select id="sort-select">
@@ -176,89 +178,89 @@
                 </select>
             </div>
             <span class="product-count">Zobrazených 9 produktov</span>
-        </div>
+        </section>
 
         <section class="product-grid">
 <!-- EXAMPLE PRODUCT ITEMS -->
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/tricko.jpg" alt="tricko">
                     <div class="product-name"><span>Tricko_1</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/nohavice_1.webp" alt="tricko">
                     <div class="product-name"><span>Nohavice_1</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/nohavice_2.webp" alt="tricko">
                     <div class="product-name"><span>Nohavice_2</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/kosela_1.webp" alt="tricko">
                     <div class="product-name"><span>Kosela_1</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/kosela_2.webp" alt="tricko">
                     <div class="product-name"><span>Kosela_2</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/tricko_2.webp" alt="tricko">
                     <div class="product-name"><span>Tricko_2</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/mikina_2.webp" alt="tricko">
                     <div class="product-name"><span>Mikina_2</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/nohavice_3.webp" alt="tricko">
                     <div class="product-name"><span>Nohavice_3</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/budna_1.jpg.webp" alt="tricko">
                     <div class="product-name"><span>Bunda_1</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
 
-            <div class="product-item">
+            <article class="product-item">
                 <a href="product-detail.html" class="product-link">
                     <img src="images/bunda_2.webp" alt="tricko">
                     <div class="product-name"><span>Bunda_2</span></div>
                     <div class="product-price"><span>$70</span></div>
                 </a>
-            </div>
+            </article>
             <!-- ... more products ... -->
         </section>
 
@@ -270,7 +272,7 @@
             </div>
         </nav>
     </main>
-</div>
+</main>
 
 
 
