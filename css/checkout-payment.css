@@ -39,6 +39,12 @@
     color: gray;
 }
 
+
+input:valid,select:valid {
+    border: 1px solid green;
+}
+
+
 .row {
     display: flex;
     padding: 0.75rem;
