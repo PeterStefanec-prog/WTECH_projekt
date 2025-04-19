@@ -271,7 +271,7 @@
                 <a href="#" id="right-arrow">&rarr;</a>
             </div>
         </nav>
-    </main>
+    </section>
 </main>
 
 

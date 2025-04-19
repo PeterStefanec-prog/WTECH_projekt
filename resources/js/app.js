@@ -1,3 +1,3 @@
-import './bootstrap';
+import './bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
+import 'public/js/bootstrap.js';
