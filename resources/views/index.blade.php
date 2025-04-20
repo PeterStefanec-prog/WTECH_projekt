@@ -31,7 +31,7 @@
         </div>
 
         <section class="product-grid">
-            @foreach ($products as $product)
+            @foreach ($newest_products as $product)
                 <a href="{{ route('product.detail', $product->id) }}" class="product-item">
                     <img src="{{ $product->photos->first()->url ?? 'images/default.jpg' }}" alt="{{ $product->name }}">
                     <div class="product-name">{{ $product->name }}</div>
@@ -42,29 +42,14 @@
 
     </section>
 
-    <section>
-        <section class="product-grid">
-            <a href="product-detail.html" class="product-item">
-                <img src="images/tricko_2.webp" alt="tricko">
-                <div class="product-name">Tricko_2</div>
-                <div class="price">100$</div>
+    <section class="product-grid">
+        @foreach ($newest_products_second_line as $product)
+            <a href="{{ route('product.detail', $product->id) }}" class="product-item">
+                <img src="{{ $product->photos->first()->url ?? 'images/default.jpg' }}" alt="{{ $product->name }}">
+                <div class="product-name">{{ $product->name }}</div>
+                <div class="price">${{ $product->price }}</div>
             </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/kosela_1.webp" alt="tricko">
-                <div class="product-name">Kosela_1</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/mikina_1.webp" alt="tricko">
-                <div class="product-name">Mikina_1</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/nohavice_2.webp" alt="tricko">
-                <div class="product-name">Nohavice_2</div>
-                <div class="price">100$</div>
-            </a>
-        </section>
+        @endforeach
     </section>
 
     <!-- Section 2: Odporucane produkty-->
@@ -97,16 +82,5 @@
         </section>
     </section>
 </main>
-
-
-{{--import javascript--}}
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384‑MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <script src="{{ asset('javascript-files/navbar.js') }}"></script>
-@endpush
-
-
 
 @endsection

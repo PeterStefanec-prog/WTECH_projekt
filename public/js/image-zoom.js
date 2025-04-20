@@ -4,7 +4,7 @@
 
     document.querySelectorAll('.product-image').forEach(img => {
     img.addEventListener('click', () => {
-        lightboxImg.src = img.dataset.src;
+        lightboxImg.src = img.src;
         lightbox.style.display = 'flex';
     });
 });

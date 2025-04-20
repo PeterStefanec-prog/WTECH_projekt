@@ -9,9 +9,20 @@ class IndexController extends Controller
 {
     public function index()
     {
-        // Načíta prvé 3 produkty aj s ich fotkami
-        $products = Product::with('photos')->take(3)->get();
+        // 8 newest products
+        $allNewest = Product::with('photos')
+            ->orderBy('created_at', 'desc')
+            ->take(8)
+            ->get();
 
-        return view('index', compact('products'));
+        // first line - first 4 products
+        $newest_products = $allNewest->slice(0, 4);
+
+
+        // second line - next 4 products
+        $newest_products_second_line = $allNewest->slice(4, 4);
+
+        return view('index', compact('newest_products', 'newest_products_second_line'));
+
     }
 }

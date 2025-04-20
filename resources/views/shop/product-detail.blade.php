@@ -55,3 +55,9 @@
         </section>
     </div> {{-- KONIEC content-wrapper --}}
 @endsection
+
+{{--import javascript--}}
+@push('scripts')
+    <script src="{{ asset('js/quantities.js') }}"></script>
+    <script src="{{ asset('js/image-zoom.js') }}"></script>
+@endpush
