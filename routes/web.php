@@ -7,9 +7,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 
+// *********** Index *************
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.detail');
+
+// *********** Products Detail *************
+// send id of product to ProductController in show method
+Route::get('/product_detail/{id}', [ProductController::class, 'show'])->name('product.detail');
 
 
 

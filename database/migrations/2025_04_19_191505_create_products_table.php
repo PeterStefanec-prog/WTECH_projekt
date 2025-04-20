@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price',10,2);
             $table->string('brand')->nullable();
+            $table->enum('gender', ['men', 'women', 'kids'])->nullable();
+            $table->enum('category', ['Clothes', 'Sport', 'Streetwear', 'Accessories', 'Sale'])->nullable();
             $table->string('color')->nullable();
 
 

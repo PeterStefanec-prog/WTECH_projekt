@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('product_id')
                 ->constrained()
                 ->cascadeOnDelete();
+            $table->string('size', 5);     // veľkosť (napr. S, M, L, XL)
             $table->integer('stock');
-            $table->string('size', 10);     // veľkosť (napr. S, M, L, XL)
+
 
             $table->timestamps();           // created_at, updated_at
         });

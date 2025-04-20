@@ -1,15 +1,17 @@
+@extends('layouts.app')
+
+@section('title', $product->name)
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/product-body.css') }}">
 @endpush
 
-@extends('layouts.app')
-
-@section('title', $product->name)
 
 @section('content')
     <div class="content-wrapper"> {{-- ZABALENÝ OBSAH --}}
         <section class="container">
             <section class="product-images-grid">
+{{--                iterating through all photos of the product - and creating url for each of them--}}
                 @foreach($product->photos as $photo)
                     <article class="product-image-div">
                         <img src="{{ asset($photo->url) }}" alt="{{ $product->name }}" class="product-image">
@@ -29,12 +31,17 @@
                 <br><br>
                 <h2>Size</h2>
                 <fieldset class="size-selector">
-                    @foreach($product->available_sizes ?? ['S', 'M', 'L', 'XL'] as $size)
-                        <label><input type="radio" name="size" value="{{ $size }}">
-                            <span>{{ $size }}</span>
+                    @forelse($product->sizes->where('stock', '>', 0) as $ps)
+                        <label>
+                            <input type="radio" name="size" value="{{ $ps->size }}">
+                            <span>{{ $ps->size }}</span>
+                            <small class="availability" style="font-size:1rem; color:gray">({{ $ps->stock }})</small>
                         </label>
-                    @endforeach
+                    @empty
+                        <p class="text-muted">Žiadne veľkosti momentálne nie sú dostupné.</p>
+                    @endforelse
                 </fieldset>
+
 
                 <section class="product-quantity">
                     <div class="quantity-selector">
