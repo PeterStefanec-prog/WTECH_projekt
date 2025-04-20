@@ -31,27 +31,15 @@
         </div>
 
         <section class="product-grid">
-            <a href="product-detail.html" class="product-item">
-                <img src="images/budna_1.jpg.webp" alt="tricko">
-                <div class="product-name">Bunda_1</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/nohavice_1.webp" alt="tricko">
-                <div class="product-name">Nohavice_1</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/tricko.jpg" alt="tricko">
-                <div class="product-name">Tricko_1</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/bunda_2.webp" alt="tricko">
-                <div class="product-name">Bunda_2</div>
-                <div class="price">100$</div>
-            </a>
+            @foreach ($products as $product)
+                <a href="{{ route('product.detail', $product->id) }}" class="product-item">
+                    <img src="{{ $product->photos->first()->url ?? 'images/default.jpg' }}" alt="{{ $product->name }}">
+                    <div class="product-name">{{ $product->name }}</div>
+                    <div class="price">${{ $product->price }}</div>
+                </a>
+            @endforeach
         </section>
+
     </section>
 
     <section>

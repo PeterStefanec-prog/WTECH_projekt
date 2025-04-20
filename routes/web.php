@@ -4,9 +4,15 @@ use Illuminate\Support\Facades\Route;
 // for auth
 use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('index');
-});
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductController;
+
+Route::get('/', [IndexController::class, 'index'])->name('home');
+
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.detail');
+
+
+
 
 
 

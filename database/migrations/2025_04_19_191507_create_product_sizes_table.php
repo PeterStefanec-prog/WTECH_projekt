@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('product_sizes', function (Blueprint $table) {
             $table->id(); // Primary key: product_size_id
-
-            // FK na product_id (1:N: jeden produkt ma viac velkosti)
+            // FK na product_id
             $table->foreignId('product_id')
                 ->constrained()
                 ->cascadeOnDelete();
-
-            $table->integer('stock');       // množstvo na sklade
+            $table->integer('stock');
             $table->string('size', 10);     // veľkosť (napr. S, M, L, XL)
 
             $table->timestamps();           // created_at, updated_at
         });
+
     }
 
     /**
