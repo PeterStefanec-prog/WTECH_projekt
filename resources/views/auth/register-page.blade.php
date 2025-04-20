@@ -12,31 +12,48 @@
 
 {{--tu vkladam meniaci sa content--}}
 @section('content')
-
+<main>
     <div class="register-container">
         <h1>Registrácia</h1>
 
-        <form id="registration-form">
-            <input type="email" placeholder="Email" required>
+        <form method="POST" action="{{ route('register') }}" id="registration-form">
+            @csrf
 
             <div class="name-fields">
-                <input type="text" placeholder="Meno" required>
-                <input type="text" placeholder="Priezvisko" required>
+                <input type="text" name="first_name" placeholder="Meno"  value="{{ old('first_name') }}" required>
+                @error('first_name') <div class="text-danger">{{ $message }}</div> @enderror
+                <input type="text" name="last_name" placeholder="Priezvisko" value="{{ old('last_name') }}" required>
+                @error('last_name') <div class="text-danger">{{ $message }}</div> @enderror
             </div>
 
-            <input type="text" placeholder="Adresa" required>
-            <input type="text" placeholder="Mesto" required>
-            <input type="password" placeholder="Heslo" required>
+            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+            @error('email') <div class="text-danger">{{ $message }}</div> @enderror
 
-            <button type="submit" class="btn"onclick="window.location.href='index.html'">Registrovať sa</button>
 
-            <button type="button" class="login-link" onclick="window.location.href='login-page.html'">alebo sa prihlásiť</button>
+            <input type="text"  name="address" placeholder="Adresa" value="{{ old('address') }}" required>
+            @error('address') <div class="text-danger">{{ $message }}</div> @enderror
 
+            <input type="text"  name="city" placeholder="Mesto" value="{{ old('city') }}" required>
+            @error('city') <div class="text-danger">{{ $message }}</div> @enderror
+
+            <input type="text"  name="postal_code" placeholder="PSC" value="{{ old('postal_code') }}" required>
+            @error('postal_code') <div class="text-danger">{{ $message }}</div> @enderror
+
+            <input type="text"  name="country" placeholder="Stat" value="{{ old('country') }}" required>
+            @error('country') <div class="text-danger">{{ $message }}</div> @enderror
+
+            <input type="password" name="password" placeholder="Heslo" required>
+            <input type="password" name="password_confirmation" placeholder="Potvrď heslo" required>
+            @error('password') <div class="text-danger">{{ $message }}</div> @enderror
+
+            <button type="submit" class="btn">Registrovať sa</button>
+
+            <a href="{{ route('login') }}" class="login-link">alebo sa prihlásiť</a>
 
         </form>
 
     </div>
-
+</main>
 @endsection
 
 

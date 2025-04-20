@@ -12,30 +12,36 @@
 
 {{--tu vkladam meniaci sa content--}}
 @section('content')
-
+<main>
 
     <section class="login-container">
         <h1>Prihlásenie</h1>
 
-        <form>
-            <input type="email" placeholder="E-mail" required>
-            <input type="password" placeholder="Heslo" required>
+        <form method="POST" action="{{ route('login') }}">
+{{--         Laravel na serveri porovna, ci tento token sedi s tym v session – ak nie, formular zlyha--}}
+            @csrf
+
+{{--            we know how the input will be called in the controller thanks to the name attribute--}}
+            <input type="email" name="email" placeholder="E-mail" value="{{ old('email')  }}" required>
+            @error('email') <div class="text-danger">{{ $message }}</div> @enderror
+
+            <input type="password" name="password" placeholder="Heslo" required>
+            @error('password') <div class="text-danger">{{ $message }}</div> @enderror
 
             <label class="stay-logged-in">
-                <input type="checkbox">
+                <input type="checkbox" name="remember">
                 <span>Ostať prihlásený</span>
             </label>
 
-            <button type="submit" class="btn primary" onclick="window.location.href='index.html'">Prihlásiť sa</button>
+            <button type="submit" class="btn primary">Prihlásiť sa</button>
 
             <p class="register-text">Nie ste zaregistrovaný?</p>
 
-            <button type="button" class="btn secondary" onclick="window.location.href='register-page.html'">Registrácia</button>
+            <a href="{{ route('register') }}" class="btn secondary">Registrácia</a>
 
-            <button type="button" class="btn admin-login" onclick="window.location.href='admin_index.html'">Prihlásiť sa ako admin (demo)</button>
         </form>
     </section>
-
+</main>
 @endsection
 
 

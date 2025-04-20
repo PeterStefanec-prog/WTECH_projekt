@@ -21,11 +21,27 @@
                     <a class="nav-link" href="#"><img src="{{ asset('images/kosik.png') }}" class="navbar-icon">2 Košík</a>
                 </li>
                 <li class="menu-item">
-                    <a class="nav-link" href="#"><img src="{{ asset('images/prihlasenie.png') }}" class="navbar-icon">Prihlásenie</a>
+                    @guest
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <img src="{{ asset('images/prihlasenie.png') }}" class="navbar-icon">
+                            Prihlásit sa
+                        </a>
+                    @else
+                        <a class="nav-link" href="{{ route('profile.show') }}">
+                            <img src="{{ asset('images/prihlasenie.png') }}" class="navbar-icon">
+                            {{ Auth::user()->full_name }}
+                        </a>
                 </li>
-                <li class="menu-item">
-                    <a class="nav-link" href="#"><img src="{{ asset('images/podpora.png') }}" class="navbar-icon">Podpora</a>
+                <li>
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                            @csrf
+                            <button class="nav-link btn btn-link" type="submit">Odhlásiť sa</button>
+                        </form>
+                    @endguest
                 </li>
+{{--                <li class="menu-item">--}}
+{{--                    <a class="nav-link" href="#"><img src="{{ asset('images/podpora.png') }}" class="navbar-icon">Podpora</a>--}}
+{{--                </li>--}}
             </ul>
         </div>
     </div>

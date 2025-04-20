@@ -29,9 +29,9 @@
 @include('layouts.partials.offcanvas')
 
 {{-- Tu dame obsah kazdej podstranky--}}
-<main>
+
     @yield('content')
-</main>
+
 
 @include('layouts.partials.footer')
 
