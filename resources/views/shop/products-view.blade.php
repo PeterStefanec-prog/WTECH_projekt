@@ -6,7 +6,8 @@
 
 {{--vkladanie styles do zasobnika--}}
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/home_body.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/input-range.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/products-view.css') }}">
 @endpush
 
 
@@ -15,8 +16,11 @@
 
 
 <header>
-    <h1>Toto je tvoje oblecenie, sport ,... </h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod tempor incidunt ut labore et dolore magna aliqua.</p>
+    <h1>{{ ucfirst($gender) }}
+        <br>
+        {{ $category }}
+    </h1>
+    <p>Vyber si z našej ponuky {{ $category ?? 'noviniek' }} pre {{ $gender }}.</p>
 </header>
 
 <!-- FILTERS ON THE LEFT SIDE -->
@@ -72,87 +76,23 @@
 
         <section class="product-grid">
 <!-- EXAMPLE PRODUCT ITEMS -->
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/tricko.jpg" alt="tricko">
-                    <div class="product-name"><span>Tricko_1</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
 
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/nohavice_1.webp" alt="tricko">
-                    <div class="product-name"><span>Nohavice_1</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
+            @foreach($products as $product)
+                <article class="product-item">
+                    <a href="{{ route('product.detail', $product->id) }}" class="product-link">
+                        <img
+                            src="{{ $product->photos->first()->url ?? asset('images/default.jpg') }}"
+                            alt="{{ $product->name }}"
+                        >
+                        <div class="product-name">{{ $product->name }}</div>
+                        <div class="product-price">${{ $product->price }}</div>
+                    </a>
+                </article>
+            @endforeach
 
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/nohavice_2.webp" alt="tricko">
-                    <div class="product-name"><span>Nohavice_2</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/kosela_1.webp" alt="tricko">
-                    <div class="product-name"><span>Kosela_1</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/kosela_2.webp" alt="tricko">
-                    <div class="product-name"><span>Kosela_2</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/tricko_2.webp" alt="tricko">
-                    <div class="product-name"><span>Tricko_2</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/mikina_2.webp" alt="tricko">
-                    <div class="product-name"><span>Mikina_2</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/nohavice_3.webp" alt="tricko">
-                    <div class="product-name"><span>Nohavice_3</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/budna_1.jpg.webp" alt="tricko">
-                    <div class="product-name"><span>Bunda_1</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-
-            <article class="product-item">
-                <a href="product-detail.html" class="product-link">
-                    <img src="images/bunda_2.webp" alt="tricko">
-                    <div class="product-name"><span>Bunda_2</span></div>
-                    <div class="product-price"><span>$70</span></div>
-                </a>
-            </article>
-            <!-- ... more products ... -->
         </section>
+        {{-- pagination --}}
+
 
         <nav class="pagination">
             <div class="page-chooser">

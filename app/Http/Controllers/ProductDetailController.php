@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 
 
-class ProductController extends Controller
+class ProductDetailController extends Controller
 {
     public function show($id)
     {

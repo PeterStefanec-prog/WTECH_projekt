@@ -1,11 +1,17 @@
 <!-- Hlavna navigacia -->
+@php $g = $gender ?? 'men'; @endphp
 
 <nav class="navbar navbar-expand-xl bg-light navbar-light">
     <div class="container-fluid justify-content-start">
-{{-- added foreach - --}}
-        @foreach(['Novinky','Oblečenie','Šport','Streetwear','Doplnky','Výpredaj'] as $cat)
-            <a href="#" class="nav-link category-item">{{ $cat }}</a>
-        @endforeach
+
+
+            <a href="{{ route('products.filter', [$g,'Clothes'])    }}" class="nav-link category-item">Oblečenie</a>
+            <a href="{{ route('products.filter', [$g,'Sport'])      }}" class="nav-link category-item">Sport</a>
+            <a href="{{ route('products.filter', [$g,'Streetwear']) }}" class="nav-link category-item">Streetwear</a>
+            <a href="{{ route('products.filter', [$g,'Accessories']) }}" class="nav-link category-item">Accessories</a>
+            <a href="{{ route('products.filter', [$g,'Sales']) }}" class="nav-link category-item">Sales</a>
+
+
 
         <button class="navbar-toggler ms-auto bg-light" type="button"
                 data-bs-toggle="offcanvas" data-bs-target="#offcanvas-right-navbar">

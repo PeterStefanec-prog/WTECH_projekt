@@ -11,12 +11,12 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
 
-        $categories = ['Clothes', 'Sport', 'Streetwear'];
+        $categories = ['Clothes', 'Sport', 'Streetwear', 'Accessories', 'Sales'];
         $genders = ['men', 'women', 'kids'];
         $colors = ['Red', 'Blue', 'Green', 'Black', 'White'];
         $brands = ['Nike', 'Adidas', 'Puma'];
 
-        for ($i = 1; $i <= 30; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $cat    = $categories[($i - 1) % count($categories)];
             $gend   = $genders[($i - 1) % count($genders)];
             $color  = $colors[array_rand($colors)];

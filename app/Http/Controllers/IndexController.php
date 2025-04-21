@@ -7,22 +7,21 @@ use App\Models\Product;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(string $gender = 'men')   // „men” je default
     {
-        // 8 newest products
         $allNewest = Product::with('photos')
-            ->orderBy('created_at', 'desc')
+            ->where('gender', $gender)
+            ->latest()          // = orderBy('created_at','desc')
             ->take(8)
             ->get();
 
-        // first line - first 4 products
-        $newest_products = $allNewest->slice(0, 4);
-
-
-        // second line - next 4 products
-        $newest_products_second_line = $allNewest->slice(4, 4);
-
-        return view('index', compact('newest_products', 'newest_products_second_line'));
-
+        return view('index', [
+            'gender'                     => $gender,
+            // first line - first 4 products
+            'newest_products'            => $allNewest->slice(0, 4),
+            // second line - next 4 products
+            'newest_products_second_line'=> $allNewest->slice(4, 4),
+        ]);
     }
 }
+

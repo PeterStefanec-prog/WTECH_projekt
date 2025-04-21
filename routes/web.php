@@ -5,15 +5,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
+use App\Http\Controllers\ProductsController;
 
-// *********** Index *************
-Route::get('/', [IndexController::class, 'index'])->name('home');
+// *********** Index - domov - novinky pre men *************
+Route::get('/{gender?}', [IndexController::class, 'index'])
+    ->where('gender', 'men|women|kids')     // men, women, kids or null (= men)
+    ->name('home');
+
+// *********** Products - produkty *************
+// /products/{gender}/{category?}
+Route::get('/products/{gender}/{category?}', [ProductsController::class, 'filter'])
+    ->where('gender', 'men|women|kids')
+    ->where('category', 'Clothes|Sport|Streetwear|Accessories|Sales')
+    ->name('products.filter');
+
 
 
 // *********** Products Detail *************
-// send id of product to ProductController in show method
-Route::get('/product_detail/{id}', [ProductController::class, 'show'])->name('product.detail');
+// send id of product to ProductDetailController in show method
+Route::get('/product_detail/{id}', [ProductDetailController::class, 'show'])->name('product.detail');
 
 
 

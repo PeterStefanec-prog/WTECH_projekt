@@ -14,7 +14,7 @@ class ProductSizeSeeder extends Seeder
 
         $sizes = ['S', 'M', 'L', 'XL'];
 
-        for ($productId = 1; $productId <= 30; $productId++) {
+        for ($productId = 1; $productId <= 100; $productId++) {
             foreach ($sizes as $size) {
                 DB::table('product_sizes')->insert([
                     'product_id' => $productId,

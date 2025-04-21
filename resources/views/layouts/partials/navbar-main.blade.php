@@ -1,10 +1,11 @@
 <!-- navigacne menu -->
 
+@php $g = $gender ?? 'men'; @endphp
 <nav class="navbar bg-light navbar-light d-flex justify-content-center">
     <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link gender-item strong-active">Muži</a>
-        <a href="#" class="nav-link gender-item">Ženy</a>
-        <a href="#" class="nav-link gender-item">Deti</a>
+        <a href="{{ route('home', 'men')   }}" class="nav-link gender-item {{ $g==='men'   ? 'strong-active' : '' }}">Muži</a>
+        <a href="{{ route('home', 'women') }}" class="nav-link gender-item {{ $g==='women' ? 'strong-active' : '' }}">Ženy</a>
+        <a href="{{ route('home', 'kids')  }}" class="nav-link gender-item {{ $g==='kids'  ? 'strong-active' : '' }}">Deti</a>
     </div>
 
     <div id="name-of-shop">

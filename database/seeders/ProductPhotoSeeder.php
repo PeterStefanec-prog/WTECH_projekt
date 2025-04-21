@@ -12,7 +12,7 @@ class ProductPhotoSeeder extends Seeder
         DB::table('product_photos')->truncate();
 
         // each product gets exactly 4 photos
-        for ($productId = 1; $productId <= 30; $productId++) {
+        for ($productId = 1; $productId <= 100; $productId++) {
             for ($j = 1; $j <= 4; $j++) {
                 DB::table('product_photos')->insert([
                     'product_id' => $productId,

@@ -30,6 +30,7 @@
             <button class="shop-all-btn" onclick="window.location.href='products-view.html'">Shop All</button>
         </div>
 
+
         <section class="product-grid">
             @foreach ($newest_products as $product)
                 <a href="{{ route('product.detail', $product->id) }}" class="product-item">
