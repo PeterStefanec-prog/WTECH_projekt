@@ -25,54 +25,38 @@
 
 <!-- FILTERS ON THE LEFT SIDE -->
 <main class="container">
-    <aside class="filters">
-        <form>
-            <div class="filters-header">
-                <h2 id="filtre">Filtre</h2>
-                <label><button id="reset-filters">Vymaž filtre</button></label>
-            </div>
 
-            <fieldset class="filter-section">
-                <h3>Farby</h3>
-                <label><input type="checkbox" /> Modrá</label><br>
-                <label><input type="checkbox" /> Zelená</label><br>
-                <label><input type="checkbox" /> Červená</label><br>
-                <label><input type="checkbox" /> Fialová</label>
-            </fieldset>
-
-            <fieldset class="filter-section">
-                <h3>Značka</h3>
-                <label><input type="checkbox" /> Nike</label><br>
-                <label><input type="checkbox" /> Adidas</label><br>
-                <label><input type="checkbox" /> Puma</label><br>
-                <label><input type="checkbox" /> Reebok</label>
-            </fieldset>
-
-            <fieldset class="filter-section">
-                <h3>Cena</h3>
-                <input type="range" min="0" max="1000" id="price-range"/>
-                <label for="price-range">Najdrahšie <span id="range-value">500 $</span></label>
-            </fieldset>
-
-    <!--         mozno aj button  ale netreba -->
-    <!--        <button type="submit" class="apply-filters">Použiť filtre</button>-->
-        </form>
-    </aside>
+    @include('layouts.partials.filters')
 
     <section class="right-section">
 <!-- SORT CONTAINER ABOVE PRODUCTS -->
         <section class="sort-container">
-            <div class="sort-header">
-                <label for="sort-select">Zoradiť podľa:</label>
-                <select id="sort-select">
-                    <option value="price-asc">Cena: od najnižšej</option>
-                    <option value="price-desc">Cena: od najvyššej</option>
-                    <option value="name-asc">Názov: A-Z</option>
-                    <option value="name-desc">Názov: Z-A</option>
-                </select>
-            </div>
-            <span class="product-count">Zobrazených 9 produktov</span>
+            <form
+                method="GET"
+                action="{{ route('products.filter', [$gender, $category]) }}">
+                
+                <div class="sort-header">
+                    <label for="sort-select">Zoradiť podľa:</label>
+                    <select
+                        name="sort"
+                        id="sort-select"
+                        onchange="this.form.submit()">
+
+                        <option value=""           {{ request('sort')=='' ? 'selected':'' }}>– Bez zoradenia –</option>
+                        <option value="price-asc"  {{ request('sort')=='price-asc'  ? 'selected':'' }}>Cena: od najnižšej</option>
+                        <option value="price-desc" {{ request('sort')=='price-desc' ? 'selected':'' }}>Cena: od najvyššej</option>
+                        <option value="name-asc"   {{ request('sort')=='name-asc'   ? 'selected':'' }}>Názov: A-Z</option>
+                        <option value="name-desc"  {{ request('sort')=='name-desc'  ? 'selected':'' }}>Názov: Z-A</option>
+                    </select>
+                </div>
+
+                <span class="product-count">
+                    Zobrazených {{ $products->total() }} produktov
+                </span>
+
+            </form>
         </section>
+
 
         <section class="product-grid">
 <!-- EXAMPLE PRODUCT ITEMS -->
@@ -97,14 +81,14 @@
         <nav class="pagination">
             <div class="page-chooser">
 
-                {{-- len ak nie sme na prvej stránke, zobraz šípku --}}
+                {{-- len ak nie sme na prvej stranke, zobraz sipku --}}
                 @if(! $products->onFirstPage())
                     <a href="{{ $products->previousPageUrl() }}" id="left-arrow">&larr;</a>
                 @endif
 
                 <span>Strana {{ $products->currentPage() }} z {{ $products->lastPage() }}</span>
 
-                {{-- len ak ešte máme ďalšiu stránku, zobraz šípku --}}
+                {{-- len ak este mame dalsiu stránku, zobraz sipku --}}
                 @if($products->hasMorePages())
                     <a href="{{ $products->nextPageUrl() }}" id="right-arrow">&rarr;</a>
                 @endif

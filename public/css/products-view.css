@@ -197,4 +197,33 @@ header {
     }
 }
 
+#submit_but {
+    background-color: gray;
+    color: white;
+    margin-top: 2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 50%;
+    text-underline: none;
+}
+
+#reset-filters {
+    color: gray;
+    margin-top: 0.4rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    width: 45%;
+    text-underline: none;
+    text-align: center;
+}
+
+#submit_but:hover {
+    background-color: #333;
+    color: white;
+}
+
+#reset-filters:hover {
+    color: #333;
+}
+
 
