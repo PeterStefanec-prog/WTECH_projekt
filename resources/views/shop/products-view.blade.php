@@ -91,16 +91,27 @@
             @endforeach
 
         </section>
+
+
         {{-- pagination --}}
-
-
         <nav class="pagination">
             <div class="page-chooser">
-                <a href="#" id="left-arrow">&larr;</a>
-                <a href="#">Strana 2 z 15</a>
-                <a href="#" id="right-arrow">&rarr;</a>
+
+                {{-- len ak nie sme na prvej stránke, zobraz šípku --}}
+                @if(! $products->onFirstPage())
+                    <a href="{{ $products->previousPageUrl() }}" id="left-arrow">&larr;</a>
+                @endif
+
+                <span>Strana {{ $products->currentPage() }} z {{ $products->lastPage() }}</span>
+
+                {{-- len ak ešte máme ďalšiu stránku, zobraz šípku --}}
+                @if($products->hasMorePages())
+                    <a href="{{ $products->nextPageUrl() }}" id="right-arrow">&rarr;</a>
+                @endif
+
             </div>
         </nav>
+
     </section>
 </main>
 

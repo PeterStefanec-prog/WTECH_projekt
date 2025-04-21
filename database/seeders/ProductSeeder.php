@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         $colors = ['Red', 'Blue', 'Green', 'Black', 'White'];
         $brands = ['Nike', 'Adidas', 'Puma'];
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 300; $i++) {
             $cat    = $categories[($i - 1) % count($categories)];
             $gend   = $genders[($i - 1) % count($genders)];
             $color  = $colors[array_rand($colors)];
