@@ -34,7 +34,20 @@
             <form
                 method="GET"
                 action="{{ route('products.filter', [$gender, $category]) }}">
-                
+
+                {{-- zachovaj existujuce filtre okrem page a sort --}}
+                @foreach(request()->except(['sort','page']) as $name => $value)
+{{--                    ak je value pole - teda napriklad [blue, red] z checboxu color, potrebujeme vygenerovat pre kazdy prvok input--}}
+                    @if(is_array($value))
+                        @foreach($value as $v)
+                            <input type="hidden" name="{{ $name }}[]" value="{{ $v }}">
+                        @endforeach
+                    @else
+                        <input type="hidden" name="{{ $name }}" value="{{ $value }}">
+                    @endif
+                @endforeach
+
+{{--                actual sort--}}
                 <div class="sort-header">
                     <label for="sort-select">Zoradiť podľa:</label>
                     <select
