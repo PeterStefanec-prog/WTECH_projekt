@@ -24,7 +24,7 @@
                     <img src="{{ asset('images/lupa.png') }}" class="navbar-icon"><input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
                 </li>
                 <li class="menu-item">
-                    <a class="nav-link" href="#"><img src="{{ asset('images/kosik.png') }}" class="navbar-icon">2 Košík</a>
+                    <a class="nav-link" href="{{ route('shopping_cart') }}"><img src="{{ asset('images/kosik.png') }}" class="navbar-icon">2 Košík</a>
                 </li>
                 <li class="menu-item">
                     @guest

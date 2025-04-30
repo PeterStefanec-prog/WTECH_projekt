@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CartController;
 
 // *********** Index - domov - novinky pre men *************
 Route::get('/{gender?}', [IndexController::class, 'index'])
@@ -24,10 +25,20 @@ Route::get('/products/{gender}/{category?}', [ProductsController::class, 'filter
 
 // *********** Products Detail *************
 // send id of product to ProductDetailController in show method
-Route::get('/product_detail/{id}', [ProductDetailController::class, 'show'])->name('product.detail');
+Route::get('/product_detail/{id}', [ProductDetailController::class, 'show'])
+    ->name('product.detail');
 
+// *********** Shopping_cart*************
+Route::get('/cart', [CartController::class, 'load'])
+    ->name('shopping_cart');
 
+// *********** Shopping_cart cez add product*************
+Route::post('/add-to-cart', [\App\Http\Controllers\CartController::class, 'addToCart'])
+    ->name('cart.add');
 
+// *********** Shopping_cart cez remove product*************
+Route::post('/remove-from-cart', [\App\Http\Controllers\CartController::class, 'removeFromCart'])
+    ->name('cart.remove');
 
 
 

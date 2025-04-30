@@ -20,17 +20,19 @@
     {{-- Space pre per‑page CSS --}}
     @stack('styles')
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-{{-- Top‑bar + hl. navigacia + offcanvas + footer --}}
-@include('layouts.partials.top-bar')
-@include('layouts.partials.navbar-main')
-@include('layouts.partials.navbar-category')
-@include('layouts.partials.offcanvas')
+<div class="flex-grow-1">
+    {{-- Top‑bar + hl. navigacia + offcanvas + footer --}}
+    @include('layouts.partials.top-bar')
+    @include('layouts.partials.navbar-main')
+    @include('layouts.partials.navbar-category')
+    @include('layouts.partials.offcanvas')
 
-{{-- Tu dame obsah kazdej podstranky--}}
+    {{-- Tu dame obsah kazdej podstranky--}}
 
-    @yield('content')
+        @yield('content')
+</div>
 
 
 @include('layouts.partials.footer')

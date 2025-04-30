@@ -11,7 +11,7 @@
     <div class="content-wrapper"> {{-- ZABALENÝ OBSAH --}}
         <section class="container">
             <section class="product-images-grid">
-{{--                iterating through all photos of the product - and creating url for each of them--}}
+                {{--iterating through all photos of the product - and creating url for each of them--}}
                 @foreach($product->photos as $photo)
                     <article class="product-image-div">
                         <img src="{{ asset($photo->url) }}" alt="{{ $product->name }}" class="product-image">
@@ -29,28 +29,35 @@
                 <p>{{ $product->description }}</p>
 
                 <br><br>
-                <h2>Size</h2>
-                <fieldset class="size-selector">
-                    @forelse($product->sizes->where('stock', '>', 0) as $ps)
-                        <label>
-                            <input type="radio" name="size" value="{{ $ps->size }}">
-                            <span>{{ $ps->size }}</span>
-                            <small class="availability" style="font-size:1rem; color:gray">({{ $ps->stock }})</small>
-                        </label>
-                    @empty
-                        <p class="text-muted">Žiadne veľkosti momentálne nie sú dostupné.</p>
-                    @endforelse
-                </fieldset>
+                {{--pridane pre kazdu velkost aj pocet kolko kusov je dostupnych--}}
+               <form action="{{ route('cart.add') }}" method="POST" id="add-to-cart-form">
+                   @csrf
+                   <input type="hidden" name="product_id" value="{{ $product->id }}">
+                   <input type="hidden" name="quantity" id="quantity" value="1">
 
+                   <h2>Size</h2>
+                   <fieldset class="size-selector">
+                       @forelse($product->sizes->where('stock', '>', 0) as $ps)
+                           <label>
+                               <input type="radio" name="size" value="{{ $ps->size }}" required>
+                               <span>{{ $ps->size }}</span>
+                               <small class="availability" style="font-size:1rem; color:gray">({{ $ps->stock }})</small>
+                           </label>
+                       @empty
+                           <p class="text-muted">Žiadne veľkosti momentálne nie sú dostupné.</p>
+                       @endforelse
+                   </fieldset>
 
-                <section class="product-quantity">
-                    <div class="quantity-selector">
-                        <button type="button">−</button>
-                        <span class="quantity">1</span>
-                        <button type="button">+</button>
-                    </div>
-                    <button class="add-to-cart">Pridaj do košíka</button>
-                </section>
+                   <section class="product-quantity">
+                       <div class="quantity-selector">
+                           <button type="button" class="quantity-button" id="decrease">−</button>
+                           <span class="quantity" id="quantity-display">1</span>
+                           <button type="button" class="quantity-button" id="increase">+</button>
+                       </div>
+                       <button type="submit" class="add-to-cart">Pridaj do košíka</button>
+                   </section>
+               </form>
+
             </section>
         </section>
     </div> {{-- KONIEC content-wrapper --}}
