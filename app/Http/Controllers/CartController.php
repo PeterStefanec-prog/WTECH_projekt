@@ -149,4 +149,48 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produkt bol odstránený z košíka.');
     }
 
+
+    // zmena poctu
+    public function updateQuantity(Request $request)
+    {
+        $productId = $request->input('product_id');
+        $size = $request->input('size');
+        $change = $request->input('change'); // +1 alebo -1
+        // logged in
+        if (Auth::check()) {
+            $item = CartItem::where('user_id', Auth::id())
+                ->where('product_id', $productId)
+                ->where('size', $size)
+                ->first();
+
+            if ($item) {
+                $item->quantity += $change;
+
+                if ($item->quantity <= 0) {
+                    $item->delete();
+                } else {
+                    $item->save();
+                }
+            }
+        }
+        // not logged in
+        else {
+            $cart = session()->get('cart', []);
+            foreach ($cart as &$item) {
+                if ($item['id'] == $productId && $item['size'] == $size) {
+                    $item['quantity'] += $change;
+                    if ($item['quantity'] <= 0) {
+                        $cart = array_filter($cart, function ($i) use ($item) {
+                            return !($i['id'] == $item['id'] && $i['size'] == $item['size']);
+                        });
+                    }
+                    break;
+                }
+            }
+            session()->put('cart', array_values($cart));
+        }
+
+        return response()->json(['success' => true]);
+    }
+
 }

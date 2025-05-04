@@ -40,6 +40,10 @@ Route::post('/add-to-cart', [\App\Http\Controllers\CartController::class, 'addTo
 Route::post('/remove-from-cart', [\App\Http\Controllers\CartController::class, 'removeFromCart'])
     ->name('cart.remove');
 
+// *********** Shopping_cart cez update quantity*************
+Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])
+    ->name('cart.updateQuantity');
+
 
 
 // ****************************************************

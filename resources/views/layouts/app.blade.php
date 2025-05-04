@@ -6,7 +6,6 @@
 
     {{-- CSRF token pre AJAX --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     {{-- Dynamicky title: ak nie je, použije sa 'Adko Petko Market' --}}
     <title>@yield('title','Adko Petko Market')</title>
 

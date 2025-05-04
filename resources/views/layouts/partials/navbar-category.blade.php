@@ -1,6 +1,10 @@
-<!-- Hlavna navigacia -->
-@php $g = $gender ?? 'men'; @endphp
+@php
+    $cart = session()->get('cart', []);
+    $cartCount = array_sum(array_column($cart, 'quantity'));
+    $g = $gender ?? 'men';
+@endphp
 
+    <!-- Hlavna navigacia -->
 <nav class="navbar navbar-expand-xl bg-light navbar-light">
     <div class="container-fluid justify-content-start">
 
@@ -24,7 +28,10 @@
                     <img src="{{ asset('images/lupa.png') }}" class="navbar-icon"><input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
                 </li>
                 <li class="menu-item">
-                    <a class="nav-link" href="{{ route('shopping_cart') }}"><img src="{{ asset('images/kosik.png') }}" class="navbar-icon">2 Košík</a>
+                    <a class="nav-link" href="{{ route('shopping_cart') }}">
+                        <img src="{{ asset('images/kosik.png') }}" class="navbar-icon">
+                        {{ $cartCount }} Košík
+                    </a>
                 </li>
                 <li class="menu-item">
                     @guest

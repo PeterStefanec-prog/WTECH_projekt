@@ -62,6 +62,6 @@
 
 {{--import javascript--}}
 @push('scripts')
-    <script src="{{ asset('javascript-files/quantities.js') }}"></script>
+    <script src="{{ asset('js/quantities.js') }}"></script>
 @endpush
 
