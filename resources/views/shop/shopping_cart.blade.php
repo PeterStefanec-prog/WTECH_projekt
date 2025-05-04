@@ -1,3 +1,4 @@
+
 {{--pouzi app.blade.php ako zaklad - definuje navbar, footer atd--}}
 @extends('layouts.app')
 
@@ -27,9 +28,12 @@
                     <span>Veľkosť: {{ $item->size ?? 'N/A' }}</span>
                     <span class="price">${{ $product->price }}</span>
                 </div>
-
+                @php
+                    // nájdeme stock pre aktuálnu veľkosť
+                    $stock = $item->product->sizes->firstWhere('size', $item->size)->stock ?? 0;
+                @endphp
                 <div class="product-quantity">
-                    <div class="quantity-selector">
+                    <div class="quantity-selector" data-max="{{ $stock }}">
                         <button type="button" class="quantity-button">−</button>
                         <span class="quantity">{{ $item->quantity }}</span>
                         <button type="button" class="quantity-button">+</button>

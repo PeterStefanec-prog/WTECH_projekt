@@ -1,8 +1,17 @@
 @php
-    $cart = session()->get('cart', []);
-    $cartCount = array_sum(array_column($cart, 'quantity'));
+    use Illuminate\Support\Facades\Auth;
+    use App\Models\CartItem;
+
+    if (Auth::check()) {
+        $cartCount = CartItem::where('user_id', Auth::id())->sum('quantity');
+    } else {
+        $cart = session()->get('cart', []);
+        $cartCount = array_sum(array_column($cart, 'quantity'));
+    }
+
     $g = $gender ?? 'men';
 @endphp
+
 
     <!-- Hlavna navigacia -->
 <nav class="navbar navbar-expand-xl bg-light navbar-light">

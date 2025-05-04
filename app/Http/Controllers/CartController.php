@@ -19,6 +19,7 @@ class CartController extends Controller
 
             $cartItems = CartItem::with('product')
                 ->where('user_id', $userId)
+                ->orderBy('created_at')
                 ->get();
 
             $total = $cartItems->sum(function ($item) {
