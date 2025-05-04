@@ -6,6 +6,7 @@ use App\Models\User; // read write data to DB users
 use Illuminate\Http\Request;    // this class is used to get data from request (get, post)
 use Illuminate\Support\Facades\Auth;    // this class is used to authenticate user (login, logout) - Laravel's gate
 
+
 class AuthController extends Controller
 {
     // 1 show login form
@@ -25,6 +26,13 @@ class AuthController extends Controller
         // attempt to log the user in
         if (Auth::attempt($credentials, $request->has('remember'))) {
             $request->session()->regenerate();
+
+            // ak je to admin, presmeruj na admin dashboard
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.index');
+            }
+
+            // bezny pouzivatel
             return redirect()->intended('/');
         }
 

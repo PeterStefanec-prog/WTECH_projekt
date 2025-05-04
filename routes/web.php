@@ -8,6 +8,12 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\AdminController;
+
+// alias
+Route::aliasMiddleware('is_admin', IsAdmin::class);
+
 
 // *********** Index - domov - novinky pre men *************
 Route::get('/{gender?}', [IndexController::class, 'index'])
@@ -77,7 +83,19 @@ Route::middleware('auth')->get('profile', [AuthController::class, 'profile'])
 // ****************************************************
 
 
+
 // ****************** profile *****************
 Route::middleware('auth')->put('/profile', [AuthController::class, 'updateProfile'])
     ->name('profile.update');
 // ****************** end of profile *****************
+
+
+// ****************** Admin login *****************
+Route::middleware(['auth', 'is_admin'])      // auth = prihlasnie, is_admin = tvoj alias
+->prefix('admin')                      // URL: /admin/…
+->name('admin.')                       // nazvy rout zacinaju 'admin.'
+->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])
+        ->name('index');              //  route('admin.index')
+});
+// **************** End of admin ************************************
