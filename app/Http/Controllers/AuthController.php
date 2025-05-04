@@ -32,7 +32,7 @@ class AuthController extends Controller
                 return redirect()->route('admin.index');
             }
 
-            // bezny pouzivatel
+            // bezny pouzivatel - hlavna stranka
             return redirect()->intended('/');
         }
 

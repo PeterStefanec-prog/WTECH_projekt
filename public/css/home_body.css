@@ -103,6 +103,10 @@ main {
     border-radius: 5px;
 }
 
+.product-card-wrapper:hover {
+    transform: translateY(-5px);
+}
+
 /* IMAGES: preserve taller aspect ratio */
 .product-item img {
     width: 100%;
@@ -145,3 +149,102 @@ a {
 }
 
 
+/* ====================  ADMIN DOPLNKY  ==================== */
+
+.adding-item-div{
+    margin-top:7rem;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.adding-item-div:hover {
+    transform: translateY(-5px);
+}
+
+#add_product{
+    display:flex;
+    height:25rem;
+    width:17rem;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 4px 16px rgba(0,0,0,.1);
+}
+#add_product img{
+    width:60%;
+    margin:auto;
+    box-shadow:none;
+}
+
+/* tlačidlá edit / delete */
+.admin-product-edit,
+.admin-product-delete{
+    position:absolute;
+    bottom:.8rem;
+    width:2rem;
+    cursor:pointer;
+    border:none;
+    background:transparent;
+}
+.admin-product-edit:hover,
+.admin-product-delete:hover{
+    width:2.4rem;
+}
+.admin-product-edit{right:2.8rem;}
+.admin-product-delete{right:.8rem;}
+
+/* obal, aby mali tlačidlá relatívny kontext */
+.product-card-wrapper{
+    background-color: white;
+    border-radius: 10px;
+    position:relative;
+    flex:1 1 calc(25% - 1rem);
+    padding:.5rem;
+}
+
+
+
+/* ========== ADMIN ICONS  ========== */
+
+
+/* spoločné pre edit aj delete ikonku */
+.admin-product-edit,
+.admin-product-delete {
+    position: absolute;
+    bottom: 1rem;         /* 16px od spodnej hrany */
+    width: 1.5rem;        /* 24px */
+    height: 1.5rem;       /* zodpovedá šírke */
+    padding: 0;           /* žiadne vnútorné odsadenie */
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    z-index: 10;          /* nad ostatným obsahom */
+}
+
+/* offset sprava */
+.admin-product-edit {
+    right: 3rem;          /* upravi podľa potreby */
+}
+.admin-product-delete {
+    right: 1rem;
+}
+
+/* zabezpečíme, aby vnútri tlačidla ikonka šla na 100% */
+.admin-product-edit img,
+.admin-product-delete img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* jemný scale efekt na hover */
+.admin-product-edit:hover,
+.admin-product-delete:hover {
+    transform: scale(1.2);
+}

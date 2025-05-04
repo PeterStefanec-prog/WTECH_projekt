@@ -59,8 +59,15 @@
                             @csrf
                             <button class="nav-link btn btn-link" type="submit">Odhlásiť sa</button>
                         </form>
-                    @endguest
                 </li>
+
+                    {{-- novy blok pre admina --}}
+                    @if(Auth::user()->is_admin)
+                        <li class="menu-item mb-2">
+                            <a class="nav-link" style="font-weight: bold; color: black; background-color: lightblue;">ADMIN SEKCIA</a>
+                        </li>
+                    @endif
+                @endguest
 {{--                <li class="menu-item">--}}
 {{--                    <a class="nav-link" href="#"><img src="{{ asset('images/podpora.png') }}" class="navbar-icon">Podpora</a>--}}
 {{--                </li>--}}

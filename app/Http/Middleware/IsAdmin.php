@@ -16,12 +16,15 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Ak je prihlaseny a is_admin = true, pokracujeme dalej
-        if (Auth::check() && Auth::user()->is_admin) {
-            return $next($request);
+        // 1) Je vobec prihlaseny? - ak neni chod na login
+        if (! Auth::check()) {
+            return redirect()->route('login');
         }
-
-        // Inak Forbidden
-        abort(403, 'Nemáte dostatočné oprávnenie.');
+        // 2) Je admin?
+        if (! Auth::user()->is_admin) {
+            abort(403, 'Nemáte oprávnenie.');
+        }
+        // Ak ano, pusti ho dalej
+        return $next($request);
     }
 }

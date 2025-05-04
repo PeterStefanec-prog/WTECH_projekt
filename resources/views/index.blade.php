@@ -1,87 +1,110 @@
-{{--pouzi app.blade.php ako zaklad - definuje navbar, footer atd--}}
+{{-- ZAKLADNY LAYOUT -------------------------------------------------------}}
 @extends('layouts.app')
 
-{{--menim title podla toho kde som--}}
+{{-- TITLE --}}
 @section('title','Domov')
 
-{{--vkladanie styles do zasobnika--}}
+{{-- STYLES  ------------------------------------}}
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home_body.css') }}">
 @endpush
 
-
-{{--tu vkladam meniaci sa content--}}
+{{-- OBSAH -----------------------------------------------------------------}}
 @section('content')
 
-<!-- BIG PICTURE MARKET-->
-<section class="hero-banner">
-    <img src="images/main_photo_1.jpg" alt="Hero Banner" />
-    <img src="images/main_photo_2.jpg" alt="Hero Banner" />
-</section>
+    {{-- HERO Banner ---}}
+    <section class="hero-banner">
+        <img src="{{ asset('images/main_photo_1.jpg') }}" alt="Hero Banner">
+        <img src="{{ asset('images/main_photo_2.jpg') }}" alt="Hero Banner">
+    </section>
 
+    <main>
 
+        {{-- *** ADMIN: PRIDAŤ NOVÝ PRODUKT *** --}}
+        @auth
+            @if(Auth::user()->is_admin)
+                <section class="adding-item-div">
+                    <h2>Pridať nový produkt</h2>
+                    <div id="add_product">
+                        <a href="" class="product-item"> {{-- {{ route('admin.add.product') }} --}}
+                            <img src="{{ asset('images/add_new.svg') }}" alt="Pridať">
+                        </a>
+                    </div>
+                </section>
+            @endif
+        @endauth
 
-<!-- MAIN CONTENT -->
-<main>
-    <!-- Section 1: Najnovsie produkty -->
-    <section>
-        <div class="section-header">
-            <h1 class="section-title">Najnovšie produkty</h1>
-            <button class="shop-all-btn" onclick="window.location.href='products-view.html'">Shop All</button>
-        </div>
+        {{-- *** NAJNOVŠIE PRODUKTY *** --}}
+        <section>
+            <div class="section-header">
+                <h1 class="section-title">Najnovšie produkty</h1>
+                <button class="shop-all-btn"
+                        onclick="window.location.href='#'"> {{-- '{{ route('products.filter', [$gender ?? 'men', 'Clothes']) }}' --}}
+                    Shop All
+                </button>
+            </div>
 
+            {{-- prvý rad 4 ks --}}
+            <section class="product-grid">
+                @foreach ($newest_products as $product)
+                    <div class="product-card-wrapper">
+                        <a href="{{ route('product.detail', $product->id) }}" class="product-item">
+                            <img src="{{ $product->photos->first()->url ?? asset('images/default.jpg') }}"
+                                 alt="{{ $product->name }}">
+                            <div class="product-name">{{ $product->name }}</div>
+                            <div class="price">${{ $product->price }}</div>
+                        </a>
 
+                        {{-- *** ADMIN EDIT / DELETE *** --}}
+                        @auth
+                            @if(Auth::user()->is_admin)
+                                <button class="admin-product-edit"
+                                        onclick="location.href='#'"> {{-- '{{ route('admin.edit.product', $product->id) }}' --}}
+                                    <img src="{{ asset('images/edit.png') }}" alt="edit">
+                                </button>
+                                <form method="POST" action="" {{-- {{ route('admin.delete.product', $product->id) }} --}}
+                                      class="d-inline">
+                                    @csrf @method('DELETE')
+                                    <button class="admin-product-delete">
+                                        <img src="{{ asset('images/delete.png') }}" alt="delete">
+                                    </button>
+                                </form>
+                            @endif
+                        @endauth
+                    </div>
+                @endforeach
+            </section>
+        </section>
+
+        {{-- druhý rad 4 ks – rovnaká logika --}}
         <section class="product-grid">
-            @foreach ($newest_products as $product)
-                <a href="{{ route('product.detail', $product->id) }}" class="product-item">
-                    <img src="{{ $product->photos->first()->url ?? 'images/default.jpg' }}" alt="{{ $product->name }}">
-                    <div class="product-name">{{ $product->name }}</div>
-                    <div class="price">${{ $product->price }}</div>
-                </a>
+            @foreach ($newest_products_second_line as $product)
+                <div class="product-card-wrapper">
+                    <a href="{{ route('product.detail', $product->id) }}" class="product-item">
+                        <img src="{{ $product->photos->first()->url ?? asset('images/default.jpg') }}"
+                             alt="{{ $product->name }}">
+                        <div class="product-name">{{ $product->name }}</div>
+                        <div class="price">${{ $product->price }}</div>
+                    </a>
+
+                    @auth
+                        @if(Auth::user()->is_admin)
+                            <button class="admin-product-edit"
+                                    onclick="location.href=''"> {{-- {{ route('admin.edit.product', $product->id) }} --}}
+                                <img src="{{ asset('images/edit.png') }}" alt="edit">
+                            </button>
+                            <form method="POST" action="" {{-- {{ route('admin.delete.product', $product->id) }} --}}
+                                  class="d-inline">
+                                @csrf @method('DELETE')
+                                <button class="admin-product-delete">
+                                    <img src="{{ asset('images/delete.png') }}" alt="delete">
+                                </button>
+                            </form>
+                        @endif
+                    @endauth
+                </div>
             @endforeach
         </section>
 
-    </section>
-
-    <section class="product-grid">
-        @foreach ($newest_products_second_line as $product)
-            <a href="{{ route('product.detail', $product->id) }}" class="product-item">
-                <img src="{{ $product->photos->first()->url ?? 'images/default.jpg' }}" alt="{{ $product->name }}">
-                <div class="product-name">{{ $product->name }}</div>
-                <div class="price">${{ $product->price }}</div>
-            </a>
-        @endforeach
-    </section>
-
-    <!-- Section 2: Odporucane produkty-->
-    <section style="margin-top: 3rem;">
-        <section class="section-header">
-            <h1 class="section-title">Odporúčané produkty</h1>
-            <button class="shop-all-btn" onclick="window.location.href='products-view.html'">Shop All</button>
-        </section>
-        <section class="product-grid">
-            <a href="product-detail.html" class="product-item">
-                <img src="images/tricko_3.webp" alt="tricko">
-                <div class="product-name">Tricko_3</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/kosela_2.webp" alt="tricko">
-                <div class="product-name">Kosela_2</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/mikina_2.webp" alt="tricko">
-                <div class="product-name">Mikina_2</div>
-                <div class="price">100$</div>
-            </a>
-            <a href="product-detail.html" class="product-item">
-                <img src="images/Nohavice_3.webp" alt="tricko">
-                <div class="product-name">Nohavice_3</div>
-                <div class="price">100$</div>
-            </a>
-        </section>
-    </section>
-</main>
-
+    </main>
 @endsection

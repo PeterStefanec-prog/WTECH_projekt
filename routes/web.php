@@ -11,8 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\AdminController;
 
-// alias
-Route::aliasMiddleware('is_admin', IsAdmin::class);
+
 
 
 // *********** Index - domov - novinky pre men *************
@@ -90,12 +89,15 @@ Route::middleware('auth')->put('/profile', [AuthController::class, 'updateProfil
 // ****************** end of profile *****************
 
 
+// alias
+Route::aliasMiddleware('is_admin', IsAdmin::class);
+
 // ****************** Admin login *****************
 Route::middleware(['auth', 'is_admin'])      // auth = prihlasnie, is_admin = tvoj alias
 ->prefix('admin')                      // URL: /admin/…
 ->name('admin.')                       // nazvy rout zacinaju 'admin.'
 ->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])
+    Route::get('/', [IndexController::class, 'index'])
         ->name('index');              //  route('admin.index')
 });
 // **************** End of admin ************************************
