@@ -1,14 +1,12 @@
-
-.container {
+.checkout-shipping {
     margin-top: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     background: #f8f8f8;
 }
 
-.summary-card {
+.checkout-shipping .summary-card {
     width: 35rem;
     padding: 2rem;
     background: #fff;
@@ -18,7 +16,29 @@
     margin-bottom: 1rem;
 }
 
-.shipping-option {
+.checkout-shipping .progress {
+    display: inline-flex;
+    align-items: center;
+    font-weight: normal;
+    margin-bottom: 2rem;
+    background: transparent;
+    font-size: 0.9rem;
+}
+
+.checkout-shipping .progress .step {
+    padding: 0 0.5rem;
+}
+
+.checkout-shipping .progress .active {
+    font-weight: bold;
+}
+
+.checkout-shipping .progress .separator {
+    padding: 0 4px;
+    color: #888;
+}
+
+.checkout-shipping .shipping-option {
     border: 2px solid #111;
     border-radius: 8px;
     padding: 1rem;
@@ -27,59 +47,47 @@
     text-align: left;
 }
 
-.shipping-option input {
+.checkout-shipping .shipping-option input {
     margin-right: 1rem;
     transform: scale(1.2);
     vertical-align: middle;
 }
 
-.shipping-option small {
+.checkout-shipping .shipping-option small {
     display: block;
-    margin-top: .25rem;
-    font-size: .85rem;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
     color: #444;
 }
 
-    /* Default “unselected” appearance */
-    .shipping-option:not(:has(input:checked)) {
-        border: none;
-    }
-
-    /* Selected card */
-    .shipping-option:has(input:checked) {
-        border-color: #111;
-        background: #fff;
-    }
-
-
-    button {
-        width: 80%;
-        padding: 1rem;
-        background: #111;
-        color: #fff;
-        font-size: 1rem;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 1rem;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main.container {
-    flex: 1;
-}
-.navbar-toggler {
-    width: auto !important; /* zabráni tomu, aby sa roztiahlo */
-    padding: 0.25rem 0.5rem; /* trocha medzier */
+/* unselected vs. selected */
+.checkout-shipping .shipping-option:not(:has(input:checked)) {
     border: none;
-    box-shadow: none;
+}
+
+.checkout-shipping .shipping-option:has(input:checked) {
+    border-color: #111;
+    background: #fff;
+}
+
+/* button len v rámci tejto karty */
+.checkout-shipping .summary-card form > button {
+    width: 80%;
+    padding: 1rem;
+    background: #111;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 1rem auto 0;
+    display: block;
+}
+
+.checkout-shipping .summary-card form > button:hover {
+    opacity: 0.9;
+}
+
+.checkout-shipping .navbar-toggler {
+    margin: 0 !important;
 }

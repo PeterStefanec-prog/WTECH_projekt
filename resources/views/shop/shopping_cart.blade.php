@@ -29,8 +29,16 @@
                     <span class="price">${{ $product->price }}</span>
                 </div>
                 @php
-                    // nájdeme stock pre aktuálnu veľkosť
-                    $stock = $item->product->sizes->firstWhere('size', $item->size)->stock ?? 0;
+                    if ($useDatabase) {
+                        // ked logged in tak v cart_item
+                        $stockSizes = $item->product->sizes;
+                    } else {
+                        // ak nie logged in -> produkt
+                        $stockSizes = $item->sizes;
+                    }
+                    $stock = $stockSizes
+                        ->firstWhere('size', $item->size)
+                        ->stock ?? 0;
                 @endphp
                 <div class="product-quantity">
                     <div class="quantity-selector" data-max="{{ $stock }}">
@@ -59,7 +67,7 @@
        <div class="subtotal">Medzisúčet:
            <span>${{ $total }}</span> bez dopravy
        </div>
-        <button onclick="window.location.href='#'">Pokračovať na dopravu</button>
+        <button onclick="window.location.href='{{ route('address.index') }}'">Pokračovať na dopravu</button>
     </div>
 </div>
 @endsection

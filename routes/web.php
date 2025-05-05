@@ -49,6 +49,13 @@ Route::post('/remove-from-cart', [\App\Http\Controllers\CartController::class, '
 Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])
     ->name('cart.updateQuantity');
 
+// *********** Address *************
+Route::get('/address' , [\App\Http\Controllers\AddressController::class, 'index'])
+    ->name('address.index');
+
+// *********** Shippin *************
+Route::get('/shipping' , [\App\Http\Controllers\ShippingController::class, 'index'])
+    ->name('shipping.index');
 
 
 // ****************************************************
