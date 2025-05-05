@@ -5,6 +5,7 @@ namespace App\Http\Controllers; // its controller in this path - laravel can fin
 use App\Models\User; // read write data to DB users
 use Illuminate\Http\Request;    // this class is used to get data from request (get, post)
 use Illuminate\Support\Facades\Auth;    // this class is used to authenticate user (login, logout) - Laravel's gate
+use App\Models\CartItem;
 
 
 class AuthController extends Controller
@@ -61,35 +62,66 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $data = $request->validate([
-            'first_name' => ['required', 'string', 'max:20'],
-            'last_name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed', 'min:6'],    // automatically checks if password_confirmation is the same as password
+            'first_name'  => ['required', 'string', 'max:20'],
+            'last_name'   => ['required', 'string', 'max:20'],
+            'email'       => ['required', 'email', 'unique:users,email'],
+            'password'    => ['required', 'confirmed', 'min:6'],
             'address'     => ['required','string'],
             'city'        => ['required','string'],
             'postal_code' => ['required','string'],
             'country'     => ['required','string'],
         ]);
 
-        // create user
+        //  Vytvorenie usera
         $user = User::create([
             'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'password' => $data['password'], // in User::casts is 'password'=>'hashed' - so it will be hashed automatically
+            'last_name'  => $data['last_name'],
+            'email'      => $data['email'],
+            'password'   => $data['password'], // automaticky sa heslo hashne cez cast v modeli
         ]);
 
-        // model Address -  User->address()
-        $user->address()->create([      // equivalent to Address::create(['user_id' => $user->id, ...])
-            'street' => $data['address'],
-            'city' => $data['city'],
+        //  Uloženie adresy
+        $user->address()->create([
+            'street'      => $data['address'],
+            'city'        => $data['city'],
             'postal_code' => $data['postal_code'],
-            'country' => $data['country']
+            'country'     => $data['country'],
         ]);
 
-        // login new user immediately - function above
+        //  Prihlásenie nového užívateľa
         Auth::login($user);
 
+        //  Migruj session‐ový košík do DB pre nového usera
+        $sessionCart = $request->session()->get('cart', []);
+
+        foreach ($sessionCart as $item) {
+            $productId = $item['id'];
+            $size      = $item['size'] ?? null;
+            $quantity  = $item['quantity'];
+
+            // Ak už existuje rovnaký záznam, pripočítame množstvo
+            $existing = CartItem::where('user_id',    $user->id)
+                ->where('product_id', $productId)
+                ->where('size',       $size)
+                ->first();
+
+            if ($existing) {
+                $existing->quantity += $quantity;
+                $existing->save();
+            } else {
+                CartItem::create([
+                    'user_id'    => $user->id,
+                    'product_id' => $productId,
+                    'size'       => $size,
+                    'quantity'   => $quantity,
+                ]);
+            }
+        }
+
+        //  Vymažeme session‐ový košík
+        $request->session()->forget('cart');
+
+        //  Redirekt na homepage alebo kamkoľvek chceš
         return redirect('/');
     }
 
