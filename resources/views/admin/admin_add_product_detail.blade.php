@@ -1,204 +1,239 @@
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/admin_add_product_detail.css">
-    <link rel="stylesheet" href="css/size-selector.css">
-    <title>Adko Petko Market</title>
-</head>
-<body>
+{{--pouzi app.blade.php ako zaklad - definuje navbar, footer atd--}}
+@extends('layouts.app')
 
-<!--**************** START OF TOP ADMIN NAVBAR ********************-->
-<!-- Horny cierny pruh -->
-<div class="top-bar">
-    Až 50% zľava na vybrané produkty do konca augusta
-</div>
+{{--menim title podla toho kde som--}}
+@section('title','Domov')
 
-<!-- Horny navbar -->
-<nav class="navbar bg-light navbar-light d-flex justify-content-center">
-    <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link gender-item strong-active">Muži</a>
-        <a href="#" class="nav-link gender-item">Ženy</a>
-        <a href="#" class="nav-link gender-item">Deti</a>
-    </div>
+{{--vkladanie styles do zasobnika--}}
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/admin_add_product_detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/size-selector.css') }}">
+@endpush
 
-    <!-- Logo -->
-    <div id="name-of-shop">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-            <img src="images/logo.png" alt="Superobchod" style="height: 40px; margin-right: 5px;">
-            <span style="font-size: 24px; font-weight: bold;">Superobchod</span>
-        </a>
-    </div>
-</nav>
 
-<!-- Hlavna navigacia -->
-<nav class="navbar navbar-expand-xl bg-light navbar-light">
-    <div class="container-fluid justify-content-start">
-        <a href="#" class="nav-link category-item active"  onclick="window.location.href='admin_index.html'">Novinky</a>
-        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Oblečenie</a>
-        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Topánky</a>
-        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Šport</a>
-        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Streetwear</a>
-        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Doplnky</a>
-        <a href="#" class="nav-link category-item" onclick="window.location.href='admin_products_view.html'">Výpredaj</a>
+{{--tu vkladam meniaci sa content--}}
+@section('content')
 
-        <!-- tlacidlo na rozbalenie menu -->
-        <button class="navbar-toggler ms-auto bg-light" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#offcanvas-right-navbar"
-                aria-controls="offcanvas-right-navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <!-- navigacne menu -->
-        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
-            <ul class="navbar-nav ms-auto d-flex align-items-center">
-                <li class="menu-item d-flex align-items-center">
-                    <img src="images/lupa.png" alt="lupa" class="navbar-icon">
-                    <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
-                </li>
-                <li class="menu-item d-flex align-items-center ms-3">
-                    <span style="font-weight: bold;">STE PRIHLÁSENÝ AKO ADMIN</span>
-                </li>
-                <li class="menu-item d-flex align-items-center ms-3">
-                    <button class="btn btn-dark btn-sm" onclick="window.location.href='index.html'">Odhlásiť sa</button>
-                </li>
-            </ul>
-        </div>
 
-    </div>
-</nav>
 
-<!-- Offcanvas Menu (slides in from right) Duplikat toho hore-->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-right-navbar" aria-labelledby="offcanvas-right-navbar-label">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvas-right-navbar-label">Menu</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <ul class="navbar-nav ms-auto d-flex flex-column align-items-start">
-            <li class="menu-item d-flex align-items-center mb-3">
-                <img src="images/lupa.png" alt="lupa" class="navbar-icon">
-                <input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
-            </li>
-            <li class="menu-item mb-2">
-                <span style="font-weight: bold;">STE PRIHLÁSENÝ AKO ADMIN</span>
-            </li>
-            <li class="menu-item">
-                <button class="btn btn-dark btn-sm" onclick="window.location.href='index.html'">Odhlásiť sa</button>
-            </li>
+{{-- SHOW SUCCESS OR ERROR MESSAGES --}}
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $err)
+                <li>{{ $err }}</li>
+            @endforeach
         </ul>
     </div>
-
-</div>
-
-<!-- ********************************************* END OF NAVBAR  **************************************************-->
-
-<h1 class="section-title">Nový produkt</h1>
+@endif
 
 
 
+{{-- FORM START --}}
+<form method="POST"
+      action="{{ route('admin.store_product') }}"
+      enctype="multipart/form-data">    {{-- aby laravel vedel spracova subory - enkodovanie --}}
+    @csrf
 
-<main class="container">
-    <section class="product-images-grid" >
-        <div class="product-image-div">
-            <img src="images/add_new.svg" data-src="images/add_new.jpg" alt="add_new" class="product-image">
-        </div>
-        <div class="product-image-div">
-            <img src="images/add_new.svg" data-src="images/add_new.svg" alt="add_new" class="product-image">
-        </div>
-        <div class="product-image-div">
-            <img src="images/add_new.svg" data-src="images/add_new.svg" alt="add_new" class="product-image">
-        </div>
-        <div class="product-image-div">
-            <img src="images/add_new.svg" data-src="images/add_new.svg" alt="add_new" class="product-image">
-        </div>
-    </section>
+    <h1 class="section-title">Nový produkt</h1>
 
-    <!--  Just thumbnail-->
-    <div id="lightbox" class="lightbox">
-        <img class="lightbox-img" src="" alt="">
-    </div>
+    {{-- IMAGES GRID --}}
+    <main class="container">
+        <section class="product-images-grid" >
+            @for($i = 0; $i < 4; $i++)
+                <div class="product-image-div">
+                    <label style="cursor:pointer; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+                        {{-- pick the i-th existing photo or fallback to placeholder --}}
+                        @php
+                            $existing = isset($product)
+                              ? ($product->photos->get($i)->url ?? null)
+                              : null;
+                        @endphp
+                        <img
+                            src="{{ old("photos.$i")
+                         ? asset('storage/' . old("photos.$i"))
+                         : ($existing ?? asset('images/add_new.svg')) }}"
+                            class="product-image"
+                            id="preview-{{ $i }}"
+                        >
+                        {{-- hidden file input --}}
+                        <input
+                            type="file"
+                            name="photos[]"
+                            accept="image/*"
+                            style="display:none"
+                            onchange="document.getElementById('preview-{{ $i }}').src = window.URL.createObjectURL(this.files[0]);"
+                        >
+                    </label>
+                </div>
+            @endfor
 
-
-
-    <section class="product-description">
-        <h2 for="nazov" class="desc-labels" >Názov</h2>
-        <input id="nazov" class="form-control mb-3" type="text" placeholder="Názov produktu...">
-
-        <section class="mb-3">
-            <h2 class="desc-labels">Pohlavie</h2><br>
-            <label><input type="checkbox"> Ženy</label>
-            <label><input type="checkbox"> Muži</label>
-            <label><input type="checkbox"> Deti</label>
         </section>
 
-        <div class="d-flex justify-content-between mb-3">
-            <div class="type-column">
-                <h2 class="desc-labels">Typ</h2>
-                <ul class="type-list">
-                    <li data-value="obleczenie" class="selected">Oblečenie</li>
-                    <li data-value="topanky">Topánky</li>
-                    <li data-value="sport">Šport</li>
-                    <li data-value="streetwear">Streetwear</li>
-                    <li data-value="doplnky">Doplnky</li>
-                    <li data-value="designer">Designer</li>
-                </ul>
-                <input type="hidden" id="typ-produktu" name="typ" value="obleczenie">
+
+
+        {{-- Product parameters --}}
+        <section class="product-description">
+            {{-- Name --}}
+            <h2 for="nazov" class="desc-labels" >Názov</h2>
+            <input
+                id="nazov"
+                name="name"
+                class="form-control mb-3"
+                type="text"
+                placeholder="Názov produktu..."
+                value="{{ old('name', $product->name ?? '') }}" {{-- old (uz som vyplnal?), $product->name ak editujeme --}}
+            >
+            @error('name') <div class="text-danger">{{ $message }}</div> @enderror
+
+
+            {{-- Gender --}}
+            <section class="mb-3">
+                <h2 class="desc-labels">Pohlavie</h2><br>
+                @foreach(['women'=>'Ženy','men'=>'Muži','kids'=>'Deti'] as $val=>$label)
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="{{ $val }}"
+                            {{ old('gender', $product->gender ?? '') === $val ? 'checked' : '' }}   {{-- ak je old nacita, inak zoberieme z produktu ak je to edit ( a podla toho dame checked ) --}}
+                        > {{ $label }}
+                    </label>
+                @endforeach
+            </section>
+            @error('gender') <div class="text-danger">{{ $message }}</div> @enderror
+
+
+            {{-- Price --}}
+            <h2 class="desc-labels" for="cena">Cena</h2>
+            <input
+                id="cena"
+                name="price"
+                class="form-control mb-3"
+                type="number"
+                placeholder="Cena produktu..."
+                min="0"
+                value="{{ old('price', $product->price ?? '') }}"
+            >
+            @error('price') <div class="text-danger">{{ $message }}</div> @enderror
+
+            {{-- Brand --}}
+            <h2 class="desc-labels" for="brand">Značka</h2>
+            <input
+                id="brand"
+                name="brand"
+                class="form-control mb-3"
+                type="text"
+                placeholder="Znacka produktu..."
+                min="0"
+                value="{{ old('brand', $product->brand ?? '') }}"
+            >
+            @error('brand') <div class="text-danger">{{ $message }}</div> @enderror
+
+
+
+            {{-- Category --}}
+            <div class="d-flex justify-content-between mb-3">
+                <div class="type-column">
+                    <h2 class="desc-labels">Typ</h2>
+                    <ul class="type-list">
+                        @foreach([
+                          'Clothes'=>'Oblečenie',
+                          'Sport'=>'Šport','Streetwear'=>'Streetwear',
+                          'Accessories'=>'Doplnky','Sales'=>'Vypredaj'
+                        ] as $val=>$label)
+                            <li
+                                data-value="{{ $val }}"
+                                class="{{ old('typ', $product->category ?? 'oblecenie') === $val ? 'selected' : '' }}"
+                            >{{ $label }}</li>
+                        @endforeach
+                    </ul>
+                    <input
+                        type="hidden"
+                        id="typ-produktu"
+                        name="category"
+                        value="{{ old('typ', $product->category ?? '') }}"
+                    >
+                </div>
+
+
+
+                {{--Color --}}
+                <div style="width: 50%;">
+                    <h2 class="desc-labels" for="farba">Farba</h2>
+                    <select
+                        id="farba"
+                        name="color"
+                        class="form-control mb-1"
+                    >
+                        @foreach(['cervena'=>'Červená','modra'=>'Modrá','zelena'=>'Zelená','cierna'=>'Čierna','biela'=>'Biela'] as $val=>$label)
+                            <option
+                                value="{{ $val }}"
+                                {{ old('color', $product->color ?? '') === $val ? 'selected' : '' }}
+                            >{{ $label }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-
-            <div style="width: 50%;">
-                <h2 class="desc-labels" for="farba">Farba</h2>
-                <select id="farba" class="form-control mb-1">
-                    <option value="cervena">Červená</option>
-                    <option value="modra">Modrá</option>
-                    <option value="zelena">Zelená</option>
-                    <option value="cierna">Čierna</option>
-                    <option value="biela">Biela</option>
-                </select>
-
-            </div>
-        </div>
+            @error('color') <div class="text-danger">{{ $message }}</div> @enderror
+            @error('category')   <div class="text-danger">{{ $message }}</div> @enderror
 
 
-        <h2 class="desc-labels">Veľkosti</h2>
-        <fieldset class="size-selector">
-            <label><input type="checkbox" name="size" value="S"><span>S</span></label>
-            <label><input type="checkbox" name="size" value="M"><span>M</span></label>
-            <label><input type="checkbox" name="size" value="L"><span>L</span></label>
-            <label><input type="checkbox" name="size" value="XL"><span>XL</span></label>
-        </fieldset>
+            {{-- Sizes --}}
+            <h2 class="desc-labels">Veľkosti</h2>
+            <fieldset class="size-selector mb-3">
+                @php
+                    $oldSizes = old('size', isset($product)
+                                ? $product->sizes->pluck('size')->toArray()
+                                : []);
+
+                @endphp {{-- Vytiahne to pomocou pluck vlastne len atributy size teda XL, M, L ...  --}}
+                @foreach(['S','M','L','XL'] as $s)
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="size[]"
+                            value="{{ $s }}"
+                            {{ in_array($s, $oldSizes) ? 'checked' : '' }}
+                        ><span>{{ $s }}</span>
+                    </label>
+                @endforeach
+            </fieldset>
+            @error('size') <div class="text-danger">{{ $message }}</div> @enderror
 
 
-        <h2 for="popis" class="desc-labels">Popis</h2>
-            <textarea id="popis" class="form-control mb-3" rows="4" placeholder="Popis produktu..."></textarea>
+            {{-- DESCRIPTION --}}
+            <h2 class="desc-labels" for="popis">Popis</h2>
+            <textarea
+                id="popis"
+                name="description"
+                class="form-control mb-3"
+                rows="4"
+                placeholder="Popis produktu..."
+            >{{ old('description', $product->description ?? '') }}</textarea>
+            @error('description') <div class="text-danger">{{ $message }}</div> @enderror
 
-            <button class="add-to-store" onclick="window.location.href='admin_index.html'">Pridať</button>
-    </section>
+            {{-- SUBMIT --}}
+            <button type="submit" class="add-to-store">Pridať</button>        </section>
+    </main>
+</form>
 
-</main>
 
 
 
-<!-- FOOTER -->
-<footer>
-    &copy; 2025 Made with love from xStefanec & xKazimir
-</footer>
 
-<script src="javascript-files/filters.js"></script>
-<script src="javascript-files/quantities.js"></script>
-<script src="javascript-files/image-zoom.js"></script>
-<script src="javascript-files/type-selector.js"></script>
-<script src="javascript-files/navbar.js"></script>
 
-<!-- Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+@endsection
 
-</body>
-</html>
+{{--import javascript--}}
+@push('scripts')
+    <script src="{{ asset('js/filters.js') }}"></script>
+    <script src="{{ asset('js/quantities.js') }}"></script>
+    <script src="{{ asset('js/image-zoom.js') }}"></script>
+    <script src="{{ asset('js/type-selector.js') }}"></script>
+@endpush

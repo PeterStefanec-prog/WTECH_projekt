@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductSize extends Model
 {
+    protected $fillable = ['product_id','size','stock'];
+
     // Size has 1 product N:1
     public function product()
     {
+
         return $this->belongsTo(Product::class);
     }
 }

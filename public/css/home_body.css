@@ -110,7 +110,8 @@ main {
 /* IMAGES: preserve taller aspect ratio */
 .product-item img {
     width: 100%;
-    height: auto;      /* Keep image ratio automatically */
+    height: 23rem;
+    object-fit: contain; /* Ensures the image covers the area while maintaining aspect ratio */
     display: block;
     border-radius: 7px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

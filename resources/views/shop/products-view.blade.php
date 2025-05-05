@@ -47,7 +47,7 @@
                     @endif
                 @endforeach
 
-{{--                actual sort--}}
+{{--                actual sort    - pomocou request posielame na tu istu url, kde sme ale s novym parametrom  sort --}}
                 <div class="sort-header">
                     <label for="sort-select">Zoradiť podľa:</label>
                     <select

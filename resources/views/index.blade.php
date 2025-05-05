@@ -20,13 +20,13 @@
 
     <main>
 
-        {{-- *** ADMIN: PRIDAŤ NOVÝ PRODUKT *** --}}
+        {{-- *** ADMIN: PRIDAT NOVÝ PRODUKT *** --}}
         @auth
             @if(Auth::user()->is_admin)
                 <section class="adding-item-div">
                     <h2>Pridať nový produkt</h2>
                     <div id="add_product">
-                        <a href="" class="product-item"> {{-- {{ route('admin.add.product') }} --}}
+                        <a href="{{ route('admin.add_product') }}" class="product-item">
                             <img src="{{ asset('images/add_new.svg') }}" alt="Pridať">
                         </a>
                     </div>
@@ -59,7 +59,7 @@
                         @auth
                             @if(Auth::user()->is_admin)
                                 <button class="admin-product-edit"
-                                        onclick="location.href='#'"> {{-- '{{ route('admin.edit.product', $product->id) }}' --}}
+                                        onclick="location.href='#'"> {{-- '{{ route('admin.edit.product', $product->id) }}' -daj tu href ziadne on clisk --}}
                                     <img src="{{ asset('images/edit.png') }}" alt="edit">
                                 </button>
                                 <form method="POST" action="" {{-- {{ route('admin.delete.product', $product->id) }} --}}

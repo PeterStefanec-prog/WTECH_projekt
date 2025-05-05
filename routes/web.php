@@ -96,15 +96,25 @@ Route::middleware('auth')->put('/profile', [AuthController::class, 'updateProfil
 // ****************** end of profile *****************
 
 
+
 // alias
 Route::aliasMiddleware('is_admin', IsAdmin::class);
 
 // ****************** Admin login *****************
 Route::middleware(['auth', 'is_admin'])      // auth = prihlasnie, is_admin = tvoj alias
-->prefix('admin')                      // URL: /admin/…
+->prefix('admin_dashboard')                      // URL: /admin/…
 ->name('admin.')                       // nazvy rout zacinaju 'admin.'
 ->group(function () {
     Route::get('/', [IndexController::class, 'index'])
         ->name('index');              //  route('admin.index')
+
+    Route::get('/add-product', [AdminController::class, 'addProduct'])
+        ->name('add_product');        //  route('admin.add_product')
+
+    // store  -  POST /admin_dashboard/add-product
+    Route::post('/add-product', [AdminController::class, 'storeProduct'])
+        ->name('store_product');
+
+
 });
 // **************** End of admin ************************************
