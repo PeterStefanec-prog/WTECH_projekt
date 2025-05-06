@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 {{--menim title podla toho kde som--}}
-@section('title', 'Choose Shipping')
+@section('title', 'Address')
 
 {{--vkladanie styles do zasobnika--}}
 @push('styles')
@@ -29,9 +29,10 @@
                   data-redirect="{{ route('shipping.index') }}">
                 <div class="name-fields">
                     <input type="text" name="first_name" placeholder="Meno" required
-                           value="{{ old('first_name', auth()->user()->first_name) }}">
+                           value="{{ old('first_name', optional(auth()->user())->first_name) }}">
+
                     <input type="text" name="last_name" placeholder="Priezvisko" required
-                           value="{{ old('last_name', auth()->user()->last_name) }}">
+                           value="{{ old('last_name', optional(auth()->user())->last_name) }}">
                 </div>
 
                 <input type="text" name="street" placeholder="Adresa" required
@@ -66,5 +67,4 @@
 
 {{--import javascript--}}
 @push('scripts')
-    <script src="{{ asset('js/register-fields-check.js') }}"></script>
 @endpush

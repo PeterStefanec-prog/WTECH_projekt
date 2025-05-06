@@ -36,7 +36,7 @@
           <small>4‑5 Pracovné dni</small>
         </section>
       </fieldset>
-      <button type="button" onclick="window.location.href='#'">Pokračovať k platbe</button>
+      <button type="button" onclick="window.location.href='{{ route('payment.loadPaymentOptions') }}'">Pokračovať k platbe</button>
     </form>
   </section>
 </main>

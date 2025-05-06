@@ -57,6 +57,13 @@ Route::get('/address' , [\App\Http\Controllers\AddressController::class, 'index'
 Route::get('/shipping' , [\App\Http\Controllers\ShippingController::class, 'index'])
     ->name('shipping.index');
 
+// *********** Choosing-payment *************
+Route::get('/choosing-payment' , [\App\Http\Controllers\PaymentController::class, 'loadPaymentOptions'])
+    ->name('payment.loadPaymentOptions');
+
+// *********** Payment(card_info) *************
+Route::get('/payment' , [\App\Http\Controllers\PaymentController::class, 'loadPayment'])
+    ->name('payment.loadPayment');
 
 // ****************************************************
 // ********************* Authorization *********************
