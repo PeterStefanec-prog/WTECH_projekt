@@ -149,7 +149,7 @@
                         ] as $val=>$label)
                             <li
                                 data-value="{{ $val }}"
-                                class="{{ old('typ', $product->category ?? 'oblecenie') === $val ? 'selected' : '' }}"
+                                class="{{ old('category', $product->category ?? '') === $val ? 'selected' : '' }}"
                             >{{ $label }}</li>
                         @endforeach
                     </ul>
@@ -157,7 +157,7 @@
                         type="hidden"
                         id="typ-produktu"
                         name="category"
-                        value="{{ old('typ', $product->category ?? '') }}"
+                        value="{{ old('category', $product->category ?? '') }}"
                     >
                 </div>
 
@@ -171,7 +171,7 @@
                         name="color"
                         class="form-control mb-1"
                     >
-                        @foreach(['cervena'=>'Červená','modra'=>'Modrá','zelena'=>'Zelená','cierna'=>'Čierna','biela'=>'Biela'] as $val=>$label)
+                        @foreach(['Red'=>'Červená','Blue'=>'Modrá','Green'=>'Zelená','Black'=>'Čierna','White'=>'Biela'] as $val=>$label)
                             <option
                                 value="{{ $val }}"
                                 {{ old('color', $product->color ?? '') === $val ? 'selected' : '' }}

@@ -15,7 +15,7 @@
         {{-- FARBY --}}
         <fieldset class="filter-section">
             <h3>Farby</h3>
-            @foreach(['Blue','Green','Red','Purple'] as $c)
+            @foreach(['Blue','Green','Red','White', 'Black'] as $c)
                 <label class="d-block">
                     <input
                         type="checkbox"
@@ -28,7 +28,8 @@
                         'Blue' => 'Modrá',
                         'Green' => 'Zelená',
                         'Red' => 'Červená',
-                        'Purple' => 'Fialová',
+                        'White' => 'Biela',
+                        'Black' => 'Čierna',
                     ][$c] ?? $c }}
                 </label>
             @endforeach
