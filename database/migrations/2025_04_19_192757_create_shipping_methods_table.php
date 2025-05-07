@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('shipping_methods', function (Blueprint $table) {
             $table->id(); // PK shipping_method_id
-            $table->string('name', 15);       // napr. "Kuriér", "Osobný odber"
+            $table->string('name', 50);       // napr. "Kuriér", "Osobný odber"
             $table->decimal('cost', 10, 2); // cena dopravy (napr. 3.99)
+            $table->string('shipping_time', 50); // nový stĺpec na čas doručenia, napr. "3-5 Pracovné dni"
             $table->timestamps();
         });
     }

@@ -24,9 +24,8 @@
                 <span class="separator">——————</span>
                 <span class="step">Platba</span>
             </div>
-            <form id="address-form"
-                  class="address-form"
-                  data-redirect="{{ route('shipping.index') }}">
+            <form action="{{ route('address.store') }}" method="POST" id="address-form" class="address-form">
+                @csrf
                 <div class="name-fields">
                     <input type="text" name="first_name" placeholder="Meno" required
                            value="{{ old('first_name', optional(auth()->user())->first_name) }}">

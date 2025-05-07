@@ -53,9 +53,15 @@ Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])
 Route::get('/address' , [\App\Http\Controllers\AddressController::class, 'index'])
     ->name('address.index');
 
+Route::post('/address', [\App\Http\Controllers\AddressController::class, 'store'])
+    ->name('address.store');
+
 // *********** Shippin *************
 Route::get('/shipping' , [\App\Http\Controllers\ShippingController::class, 'index'])
     ->name('shipping.index');
+
+Route::post('/shipping', [\App\Http\Controllers\ShippingController::class, 'store'])
+    ->name('shipping.store');
 
 // *********** Choosing-payment *************
 Route::get('/choosing-payment' , [\App\Http\Controllers\PaymentController::class, 'loadPaymentOptions'])
@@ -64,6 +70,14 @@ Route::get('/choosing-payment' , [\App\Http\Controllers\PaymentController::class
 // *********** Payment(card_info) *************
 Route::get('/payment' , [\App\Http\Controllers\PaymentController::class, 'loadPayment'])
     ->name('payment.loadPayment');
+// post
+Route::post('/payment', [\App\Http\Controllers\PaymentController::class, 'processPayment'])
+    ->name('payment.process');
+
+// *********** Order confirmed *************
+Route::get('/confirmed' , [\App\Http\Controllers\OrderConfirmedController::class, 'index'])
+    ->name('confirmed.index');
+
 
 // ****************************************************
 // ********************* Authorization *********************

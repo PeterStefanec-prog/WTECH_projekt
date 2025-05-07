@@ -24,20 +24,29 @@
       <span class="separator">——————</span>
       <span class="step">Platba</span>
     </div>
-    <form>
-      <fieldset>
-        <section class="shipping-option">
-          <label><input type="radio" name="delivery" checked>Packeta kuriér</label>
-          <small>3‑5 Pracovné dni</small>
-        </section>
+      <form action="{{ route('shipping.store') }}" method="POST">
+          @csrf
+          <fieldset>
+              @foreach($shippingMethods as $method)
+                  <section class="shipping-option">
+                      <label>
+                          <input
+                              type="radio"
+                              name="shipping_method"
+                              value="{{ $method->id }}"
+                              {{ $loop->first ? 'checked' : '' }}
+                          >
+                          {{ $method->name }}
+                      </label>
+                      <small>{{ $method->shipping_time }}</small>
+                  </section>
+              @endforeach
+          </fieldset>
 
-        <section class="shipping-option">
-          <label><input type="radio" name="delivery">Slovenská pošta kuriér</label>
-          <small>4‑5 Pracovné dni</small>
-        </section>
-      </fieldset>
-      <button type="button" onclick="window.location.href='{{ route('payment.loadPaymentOptions') }}'">Pokračovať k platbe</button>
-    </form>
+          <button type="submit">
+              Pokračovať k platbe
+          </button>
+      </form>
   </section>
 </main>
 @endsection

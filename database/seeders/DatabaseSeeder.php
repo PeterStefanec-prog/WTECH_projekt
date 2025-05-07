@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             ProductPhotoSeeder::class,
             ProductSizeSeeder::class,
+            ShippingMethodSeeder::class,
+            PaymentMethodSeeder::class
         ]);
     }
 }

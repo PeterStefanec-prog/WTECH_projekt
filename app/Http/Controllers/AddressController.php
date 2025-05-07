@@ -21,5 +21,19 @@ class AddressController extends Controller
 
         return view('checkout.checkout_address', compact('address'));
     }
+
+    public function store(Request $request)
+    {
+        // validuj, ulož Address model
+        $address = Address::updateOrCreate(
+            ['user_id'=>Auth::id()],
+            $request->only('first_name','last_name','street','city','country','postal_code','notes')
+        );
+
+        session(['address_id'=>$address->id]);
+
+        return redirect()->route('shipping.index');
+    }
+
 }
 

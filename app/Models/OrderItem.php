@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
-    // OrderItem belongs to 1 order N:1
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'quantity',
+        'price',
+        'size',
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
 
-    // OrderItems belong to 1 product N:1
     public function product()
     {
         return $this->belongsTo(Product::class);

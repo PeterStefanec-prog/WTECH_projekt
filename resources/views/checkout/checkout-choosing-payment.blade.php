@@ -24,23 +24,27 @@
       <span class="separator">——————</span>
       <span class="step active">Platba</span>
     </div>
-    <form>
-      <fieldset>
-<!--        <legend>Spôsob platby</legend>-->
-        <div class="shipping-option">
-          <label><input type="radio" name="delivery" checked>Platobná karta</label>
-        </div>
-
-        <div class="shipping-option">
-          <label><input type="radio" name="delivery">Apple pay</label>
-        </div>
-
-        <div class="shipping-option">
-          <label><input type="radio" name="delivery">Pay pall</label>
-        </div>
-      </fieldset>
-      <button type="button" onclick="window.location.href='{{ route('payment.loadPayment') }}'">Pokračovať k platbe</button>
-    </form>
+      <form action="{{ route('payment.loadPayment') }}" method="GET">
+          @csrf
+          <fieldset>
+              @foreach($paymentMethods as $method)
+                  <div class="shipping-option">
+                      <label>
+                          <input
+                              type="radio"
+                              name="payment_method"
+                              value="{{ $method->id }}"
+                              {{ $loop->first ? 'checked' : '' }}
+                          >
+                          {{ $method->name }}
+                      </label>
+                  </div>
+              @endforeach
+          </fieldset>
+          <button type="submit">
+              Pokračovať k platbe
+          </button>
+      </form>
   </section>
 </main>
 @endsection

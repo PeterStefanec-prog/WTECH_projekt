@@ -26,7 +26,10 @@
     <span class="step active">Platba</span>
   </div>
 
-  <form class="payment-form">
+  <form class="payment-form"
+        action="{{ route('payment.process') }}"
+        method="POST">
+      @csrf
     <fieldset>
         <label id="card-holder-name">
             <input

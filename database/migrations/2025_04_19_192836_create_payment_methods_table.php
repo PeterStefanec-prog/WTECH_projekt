@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id(); // PK payment_method_id
-            $table->string('name', 15); // napr. "Dobierka", "Platba kartou"
+            $table->string('name', 50); // napr. "Dobierka", "Platba kartou"
             $table->timestamps();
         });
     }
