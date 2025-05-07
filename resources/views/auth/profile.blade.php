@@ -6,9 +6,10 @@
 
 {{--vkladanie styles do zasobnika--}}
 @push('styles')
-    <link rel="stylesheet" href="css/checkout-address.css">
-    <link rel="stylesheet" href="css/orders-table.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="{{ asset('css/checkout-address.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/orders-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 @endpush
 
 
@@ -20,8 +21,7 @@
             {{ session('status') }}
         </div>
     @endif
-
-
+    <div class="content-wrapper">
     <main class="container">
         <section class="summary-card">
             <h2>Váš účet</h2>
@@ -114,54 +114,36 @@
 {{--                </button>--}}
             </form>
         </section>
+        <!-- Orders Table Section -->
+        <section class="orders-section">
+            <h2>Moje objednávky</h2>
+            <table class="orders-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Meno zákazníka</th>
+                    <th>Cena</th>
+                    <th>Datum objednávky</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse($orders as $order)
+                    <tr>
+                        <td>{{ $order->id }}</td>
+                        <td>{{ $order->customer_name ?? $user->full_name }}</td>
+                        <td>${{ number_format($order->total_price, 2) }}</td>
+                        <td>{{ $order->created_at->format('d.m.Y') }}</td>
+                        <td>{{ ucfirst($order->status) }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">Zatiaľ nemáte žiadne objednávky.</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </section>
     </main>
-
-
-
-<!-- Orders Table Section -->
-<section class="orders-section">
-  <h2>Moje objednávky</h2>
-  <table class="orders-table">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Meno zákazníka</th>
-      <th>Cena</th>
-      <th>Datum objednávky</th>
-      <th>Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>300</td>
-      <td>Jozko Mrkvicka</td>
-      <td>$400</td>
-      <td>08.01.2025</td>
-      <td>Zaplatené</td>
-    </tr>
-    <tr>
-      <td>300</td>
-      <td>Jozko Mrkvicka</td>
-      <td>$400</td>
-      <td>08.01.2025</td>
-      <td>Zaplatené</td>
-    </tr>
-    <tr>
-      <td>300</td>
-      <td>Jozko Mrkvicka</td>
-      <td>$400</td>
-      <td>08.01.2025</td>
-      <td>Zaplatené</td>
-    </tr>
-    <tr>
-      <td>300</td>
-      <td>Jozko Mrkvicka</td>
-      <td>$400</td>
-      <td>08.01.2025</td>
-      <td>Zaplatené</td>
-    </tr>
-    </tbody>
-  </table>
-</section>
-
+    </div>
 @endsection

@@ -130,9 +130,14 @@ class AuthController extends Controller
     // 6 go to profile page
     public function profile()
     {
-        return view('auth.profile', [
-            'user' => Auth::user(),     // send this user (object) to view
-        ]);
+        $user = auth()->user();
+
+        // Načítame všetky objednávky tohto užívateľa, najnovšie prve
+        $orders = $user->orders()
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('auth.profile', compact('user','orders'));
     }
 
 

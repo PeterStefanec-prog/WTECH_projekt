@@ -28,9 +28,16 @@ footer {
 
 /* Voliteľné odsadenie obsahu */
 main {
+    flex:1;
     padding: 2rem 4rem;
 }
 
 .orders-section {
     margin-bottom: 2rem;
+}
+
+main.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
