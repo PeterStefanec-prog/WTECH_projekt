@@ -129,12 +129,18 @@ Route::middleware(['auth', 'is_admin'])      // auth = prihlasnie, is_admin = tv
     Route::get('/', [IndexController::class, 'index'])
         ->name('index');              //  route('admin.index')
 
+
     Route::get('/add-product', [AdminController::class, 'addProduct'])
         ->name('add_product');        //  route('admin.add_product')
 
     // store  -  POST /admin_dashboard/add-product
     Route::post('/add-product', [AdminController::class, 'storeProduct'])
         ->name('store_product');
+
+    // EDIT
+    Route::get ('/edit-product/{product}',   [AdminController::class,'editProduct'])->name('edit_product');
+    Route::put ('/edit-product/{product}',   [AdminController::class,'updateProduct'])->name('update_product');
+
 
 
 });

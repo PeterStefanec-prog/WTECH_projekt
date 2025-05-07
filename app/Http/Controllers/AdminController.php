@@ -17,10 +17,11 @@ class AdminController extends Controller
     // zobrazenie hlavnej admin stranky
     public function addProduct()
     {
-        return view('admin.admin_add_product_detail');
+        return view('admin.admin_add_&_edit_product');
     }
 
 
+    // CREATE PRODUCT
     public function storeProduct(Request $request)  // handles POST
     {
         // VALIDATE INPUTS
@@ -72,4 +73,13 @@ class AdminController extends Controller
         }
     }
 
+
+    // EDIT PRODUCT
+    public function editProduct($id)
+    {
+        $product = Product::with(['photos', 'sizes'])->findOrFail($id);
+        return view('admin.admin_add_&_edit_product', compact('product'));
+    }
+
 }
+

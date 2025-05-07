@@ -58,12 +58,11 @@
                         {{-- *** ADMIN EDIT / DELETE *** --}}
                         @auth
                             @if(Auth::user()->is_admin)
-                                <button class="admin-product-edit"
-                                        onclick="location.href='#'"> {{-- '{{ route('admin.edit.product', $product->id) }}' -daj tu href ziadne on clisk --}}
+                                <a  href="{{ route('admin.edit_product', $product->id) }}" class="admin-product-edit">
                                     <img src="{{ asset('images/edit.png') }}" alt="edit">
-                                </button>
+                                </a>
                                 <form method="POST" action="" {{-- {{ route('admin.delete.product', $product->id) }} --}}
-                                      class="d-inline">
+                                class="d-inline">
                                     @csrf @method('DELETE')
                                     <button class="admin-product-delete">
                                         <img src="{{ asset('images/delete.png') }}" alt="delete">
@@ -89,10 +88,9 @@
 
                     @auth
                         @if(Auth::user()->is_admin)
-                            <button class="admin-product-edit"
-                                    onclick="location.href=''"> {{-- {{ route('admin.edit.product', $product->id) }} --}}
+                            <a  href="{{ route('admin.edit_product', $product->id) }}" class="admin-product-edit">
                                 <img src="{{ asset('images/edit.png') }}" alt="edit">
-                            </button>
+                            </a>
                             <form method="POST" action="" {{-- {{ route('admin.delete.product', $product->id) }} --}}
                                   class="d-inline">
                                 @csrf @method('DELETE')

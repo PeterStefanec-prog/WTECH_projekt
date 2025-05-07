@@ -191,6 +191,7 @@ a {
     cursor:pointer;
     border:none;
     background:transparent;
+    pointer-events: auto;
 }
 .admin-product-edit:hover,
 .admin-product-delete:hover{
