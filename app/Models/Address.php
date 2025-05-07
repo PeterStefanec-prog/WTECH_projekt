@@ -10,10 +10,13 @@ class Address extends Model
 
     protected $fillable = [
         'user_id',
+        'first_name',
+        'last_name',
         'street',
         'city',
-        'postal_code',
         'country',
+        'postal_code',
+        'notes',
     ];
 
     // spätný vzťah: každá adresa patrí jednému používateľovi

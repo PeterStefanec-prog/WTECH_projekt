@@ -62,33 +62,34 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $data = $request->validate([
-            'first_name'  => ['required', 'string', 'max:20'],
-            'last_name'   => ['required', 'string', 'max:20'],
-            'email'       => ['required', 'email', 'unique:users,email'],
-            'password'    => ['required', 'confirmed', 'min:6'],
+            'first_name'  => ['required','string','max:20'],
+            'last_name'   => ['required','string','max:20'],
+            'email'       => ['required','email','unique:users,email'],
+            'password'    => ['required','confirmed','min:6'],
             'address'     => ['required','string'],
             'city'        => ['required','string'],
             'postal_code' => ['required','string'],
             'country'     => ['required','string'],
         ]);
 
-        //  Vytvorenie usera
+        // Vytvorenie usera
         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name'  => $data['last_name'],
             'email'      => $data['email'],
-            'password'   => $data['password'], // automaticky sa heslo hashne cez cast v modeli
+            'password'   => $data['password'],
         ]);
 
-        //  Uloženie adresy
+        // Uloženie adresy – teraz vrátane first_name a last_name
         $user->address()->create([
+            'first_name'  => $data['first_name'],
+            'last_name'   => $data['last_name'],
             'street'      => $data['address'],
             'city'        => $data['city'],
             'postal_code' => $data['postal_code'],
             'country'     => $data['country'],
         ]);
 
-        //  Prihlásenie nového užívateľa
         Auth::login($user);
 
         //  Migruj session‐ový košík do DB pre nového usera

@@ -14,15 +14,24 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
 
-            // FK to user
+            // FK to users.id, nullable for guest checkout
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
-                ->cascadeOnDelete();
+                ->nullOnDelete();
 
-            $table->string('street');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('country');
+            // Customer name fields
+            $table->string('first_name', 50);
+            $table->string('last_name', 50);
+
+            // Address fields
+            $table->string('street', 100);
+            $table->string('city', 50);
+            $table->string('postal_code', 20);
+            $table->string('country', 50);
+
+            // Additional notes (optional)
+            $table->text('notes')->nullable();
 
             $table->timestamps();
         });

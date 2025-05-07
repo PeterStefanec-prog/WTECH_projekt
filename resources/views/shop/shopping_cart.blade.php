@@ -67,8 +67,18 @@
        <div class="subtotal">Medzisúčet:
            <span>${{ $total }}</span> bez dopravy
        </div>
-        <button onclick="window.location.href='{{ route('address.index') }}'">Pokračovať na dopravu</button>
+        @if($total > 0)
+            <button onclick="window.location.href='{{ route('address.index') }}'">
+                Pokračovať na dopravu
+            </button>
+        @else
+            <button disabled class="disabled">
+                Pokračovať na dopravu
+            </button>
+            <p class="text-danger mt-2">Košík je prázdny, pridaj najprv nejaké produkty.</p>
+        @endif
     </div>
+
 </div>
 @endsection
 
