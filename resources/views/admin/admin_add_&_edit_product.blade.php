@@ -70,7 +70,7 @@
                         {{-- hidden file input --}}
                         <input
                             type="file"
-                            name="photos[]"
+                            name="photos[{{ $i }}]"
                             accept="image/*"
                             style="display:none"
                             onchange="document.getElementById('preview-{{ $i }}').src = window.URL.createObjectURL(this.files[0]);"

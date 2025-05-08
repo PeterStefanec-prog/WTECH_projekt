@@ -64,16 +64,21 @@ class AdminController extends Controller
 
             // photos: pri edit vymazeme existujuce
             if ($r->hasFile('photos')) {
-                // zmazat stare
-                $product->photos->each(function ($p) {
-                    $relative = Str::after($p->url, '/storage/');
-                    Storage::disk('public')->delete($relative);
-                    $p->delete();
-                });
-                // ulozit nove
-                foreach ($r->file('photos') as $file) {
-                    $path = $file->store('products', 'public'); // storage/app/public/products - pouzivame lokalne storage aby sme oddelili runtimes files
-                    $product->photos()->create(['url' => Storage::url($path)]);
+                // existujuce obrazky dame do pola
+                $existing = $product->photos()->get();  // Collection
+
+                foreach ($r->file('photos') as $index => $file) {
+                    // ak v tom slote existoval obrazok, zmazeme ho
+                    if (isset($existing[$index])) {
+                        $old = $existing[$index];
+                        Storage::disk('public')->delete(Str::after($old->url,'/storage/'));
+                        $old->delete();
+                    }
+                    // ulozime updatenuty obrazok do toho slotu
+                    $path = $file->store('products','public');
+                    $product->photos()->create([
+                        'url' => Storage::url($path)
+                    ]);
                 }
             }
 
