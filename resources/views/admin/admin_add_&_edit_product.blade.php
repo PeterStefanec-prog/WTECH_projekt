@@ -34,13 +34,19 @@
 
 
 
-{{-- FORM START --}}
-<form method="POST"
-      action="{{ route('admin.store_product') }}"
-      enctype="multipart/form-data">    {{-- aby laravel vedel spracova subory - enkodovanie --}}
-    @csrf
-
-    <h1 class="section-title">Nový produkt</h1>
+{{-- FORM START - CREATE vs. UPDATE --}}
+    <form method="POST"
+          action="{{ isset($product)
+                ? route('admin.update_product',$product)
+                : route('admin.store_product') }}"
+          enctype="multipart/form-data">
+        @csrf
+        @if(isset($product))
+            @method('PUT')
+            <h1 class="section-title">Upraviť produkt</h1>
+        @else
+            <h1 class="section-title">Nový produkt</h1>
+        @endif
 
     {{-- IMAGES GRID --}}
     <main class="container">
@@ -219,7 +225,10 @@
             @error('description') <div class="text-danger">{{ $message }}</div> @enderror
 
             {{-- SUBMIT --}}
-            <button type="submit" class="add-to-store">Pridať</button>        </section>
+            <button type="submit" class="add-to-store">
+                {{ isset($product) ? 'Uložiť zmeny' : 'Pridať' }}
+            </button>
+        </section>
     </main>
 </form>
 
