@@ -13,7 +13,22 @@
 
 {{--tu vkladam meniaci sa content--}}
 @section('content')
+    {{--    // ALERTY--}}
+    @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
 
+    @if($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 <header>
     <h1>{{ ucfirst($gender) }}
@@ -73,17 +88,33 @@
 
         <section class="product-grid">
 <!-- EXAMPLE PRODUCT ITEMS -->
-
-            @foreach($products as $product)
+            @foreach ($products as $product)
                 <article class="product-item">
                     <a href="{{ route('product.detail', $product->id) }}" class="product-link">
-                        <img
-                            src="{{ $product->photos->first()->url ?? asset('images/default.jpg') }}"
-                            alt="{{ $product->name }}"
-                        >
+                        <img src="{{ $product->photos->first()->url ?? asset('images/default.jpg') }}"
+                             alt="{{ $product->name }}">
                         <div class="product-name">{{ $product->name }}</div>
                         <div class="product-price">${{ $product->price }}</div>
                     </a>
+
+                    {{-- *** ADMIN EDIT / DELETE *** --}}
+                    @auth
+                        @if(Auth::user()->is_admin)
+                            <a  href="{{ route('admin.edit_product', $product->id) }}" class="admin-product-edit">
+                                <img src="{{ asset('images/edit.png') }}" alt="edit">
+                            </a>
+                            <form method="POST"
+                                  action="{{ route('admin.delete_product', $product->id) }}"
+                                  class="d-inline"
+                                  onsubmit="return confirm('Naozaj chcete produkt vymazať?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="admin-product-delete">
+                                    <img src="{{ asset('images/delete.png') }}" alt="delete">
+                                </button>
+                            </form>
+                        @endif
+                    @endauth
                 </article>
             @endforeach
 

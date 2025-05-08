@@ -8,20 +8,23 @@ namespace App\Http\Controllers;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Storage;
     use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\URL;
 
 class AdminController extends Controller
 {
     // zobrazenie admin add page
     public function addProduct()
     {
-        return view('admin.admin_add_&_edit_product');    // bez $product = null
+        $redirect = url()->previous();
+        return view('admin.admin_add_&_edit_product', compact('redirect')); // product = null
     }
 
     // zobrazenie admin edit page
     public function editProduct($id)
     {
         $product = Product::with(['photos', 'sizes'])->findOrFail($id);
-        return view('admin.admin_add_&_edit_product', compact('product'));
+        $redirect = url()->previous();
+        return view('admin.admin_add_&_edit_product', compact('product','redirect'));
     }
 
     //  // CREATE PRODUCT
@@ -96,7 +99,12 @@ class AdminController extends Controller
             $msg = $id
                 ? 'Produkt bol úspešne upravený.'
                 : 'Produkt bol úspešne pridaný.';
-            return back()->with('success', $msg);
+
+            // redirect to the page where the user came from
+            $target = $r->input('redirect_to', route('admin.index'));
+            return redirect()
+                ->to($target)
+                ->with('success', $msg);
 
         } catch (\Throwable $e) {
             DB::rollBack(); // ak sa nieco pokazilo, vsetky SQL prikazy sa vratia do povodneho stavu

@@ -224,6 +224,9 @@
             >{{ old('description', $product->description ?? '') }}</textarea>
             @error('description') <div class="text-danger">{{ $message }}</div> @enderror
 
+            {{-- just to know where to go back --}}
+            <input type="hidden" name="redirect_to" value="{{ $redirect ?? url()->previous() }}">
+
             {{-- SUBMIT --}}
             <button type="submit" class="add-to-store">
                 {{ isset($product) ? 'Uložiť zmeny' : 'Pridať' }}

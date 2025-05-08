@@ -220,23 +220,23 @@ a {
     position: absolute;
     bottom: 1rem;         /* 16px od spodnej hrany */
     width: 1.5rem;        /* 24px */
-    height: 1.5rem;       /* zodpovedá šírke */
-    padding: 0;           /* žiadne vnútorné odsadenie */
+    height: 1.5rem;
+    padding: 0;
     cursor: pointer;
     border: none;
     background: transparent;
-    z-index: 10;          /* nad ostatným obsahom */
+    z-index: 10;
 }
 
 /* offset sprava */
 .admin-product-edit {
-    right: 3rem;          /* upravi podľa potreby */
+    right: 3rem;
 }
 .admin-product-delete {
     right: 1rem;
 }
 
-/* zabezpečíme, aby vnútri tlačidla ikonka šla na 100% */
+/* zabezpecime, aby vnutri tlacidla ikonka isla na 100% */
 .admin-product-edit img,
 .admin-product-delete img {
     display: block;
@@ -245,7 +245,7 @@ a {
     object-fit: contain;
 }
 
-/* jemný scale efekt na hover */
+/* jemny scale efekt na hover */
 .admin-product-edit:hover,
 .admin-product-delete:hover {
     transform: scale(1.2);
