@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product; // read write data to DB products
+use Illuminate\Support\Str;
 
 
 class ProductsController extends Controller
 {
-    public function filter(string $gender, ?string $category = null, Request $request)
+    public function filter( Request $request, string $gender, ?string $category = null)
     {
+
         $query = Product::with('photos')
             ->where('gender', $gender);
 
-        if ($category) {
+        if ($request->filled('search')) {
+            $search = Str::lower($request->search);
+            $query->whereRaw('LOWER(name) LIKE ?', ["{$search}%"]);
+        }
+
+        elseif ($category) {
             $query->where('category', $category);
         }
 

@@ -34,7 +34,18 @@
         <div class="collapse navbar-collapse justify-content-end" id="navmenu">
             <ul class="navbar-nav ms-auto d-flex">
                 <li class="menu-item d-flex align-items-center search-group">
-                    <img src="{{ asset('images/lupa.png') }}" class="navbar-icon"><input type="text" class="form-control nav-textfield" placeholder="Vyhľadaj">
+                    <form action="{{ route('products.filter', [$g]) }}" method="GET" class="d-flex">
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control nav-textfield"
+                            placeholder="Vyhľadaj"
+                            value="{{ request('search') }}"
+                        >
+                        <button class="btn btn-link p-0 ms-2" type="submit">
+                            <img src="{{ asset('images/lupa.png') }}" class="navbar-icon">
+                        </button>
+                    </form>
                 </li>
                 <li class="menu-item">
                     <a class="nav-link" href="{{ route('shopping_cart') }}">
