@@ -246,3 +246,5 @@
     <script src="{{ asset('js/image-zoom.js') }}"></script>
     <script src="{{ asset('js/type-selector.js') }}"></script>
 @endpush
+
+

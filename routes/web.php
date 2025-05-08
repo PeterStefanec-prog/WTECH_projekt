@@ -142,6 +142,11 @@ Route::middleware(['auth', 'is_admin'])      // auth = prihlasnie, is_admin = tv
     Route::put ('/edit-product/{product}',   [AdminController::class,'updateProduct'])->name('update_product');
 
 
+    // DELETE
+    Route::delete('/delete-product/{product}', [AdminController::class, 'deleteProduct'])
+        ->name('delete_product');
+
+
 
 });
 // **************** End of admin ************************************

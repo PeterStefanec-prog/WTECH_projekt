@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Storage;
     use Illuminate\Support\Str;
+
 class AdminController extends Controller
 {
     // zobrazenie admin add page
@@ -102,6 +103,35 @@ class AdminController extends Controller
             Log::error('Product save failed: ' . $e->getMessage());
             return back()
                 ->withErrors('Nepodarilo sa uložiť produkt – skúste to znova.')
+                ->withInput();
+        }
+    }
+
+    // DELETE PRODUCT
+    public function deleteProduct(Product $product) {
+        DB::beginTransaction();
+        try {
+            // delete photos from storage
+            foreach ($product->photos as $photo) {
+                Storage::disk('public')->delete(
+                    STR::after($photo->url, '/storage/') //relative path
+                );
+            }
+
+            // cascade delete
+            $product->photos()->delete();
+            $product->sizes()->delete();
+
+            // delete product
+            $product->delete();
+
+            DB::commit();
+            return back()->with('success', 'Produkt bol úspešne odstránený.');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error('Product delete failed: ' . $e->getMessage());
+            return back()
+                ->withErrors('Nepodarilo sa odstrániť produkt – skúste to znova.')
                 ->withInput();
         }
     }
