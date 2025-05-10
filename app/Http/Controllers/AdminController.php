@@ -46,7 +46,7 @@ class AdminController extends Controller
         $data = $r->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|decimal:0,2|min:0',
             'brand' => 'nullable|string|max:255',
             'gender' => 'required|in:men,women,kids',
             'category' => 'required|in:Clothes,Sport,Streetwear,Accessories,Sales',
@@ -55,6 +55,8 @@ class AdminController extends Controller
             'photos.*' => 'image|max:10240',
             'size' => 'required|array|min:1',
             'size.*' => 'in:S,M,L,XL',
+            'stock'     => 'required|array',
+            'stock.*'   => 'nullable|integer|min:0',
         ]);
 
         DB::beginTransaction(); // spusti db transakciu - vsetky nasledujuce SQL prikazy nebudu definitivne ulozeen - kym sa nezavola DB:commit
@@ -87,10 +89,18 @@ class AdminController extends Controller
             }
 
             // SIZES: vymazeem tie, ktore neboli zvolene a sync zvysok
-            $product->sizes()->whereNotIn('size', $r->input('size'))->delete();
+            $product->sizes()
+                ->whereNotIn('size', $r->input('size'))
+                ->delete();
+
+            $stocks = $r->input('stock', []);  // e.g. ['S'=>5, 'M'=>0, ...]
+
             foreach ($r->input('size') as $s) {
+                $qty = isset($stocks[$s]) ? intval($stocks[$s]) : 0;
+
                 $product->sizes()->updateOrCreate(
-                    ['size' => $s], ['stock' => 1]
+                    ['size'  => $s],
+                    ['stock' => $qty]
                 );
             }
 

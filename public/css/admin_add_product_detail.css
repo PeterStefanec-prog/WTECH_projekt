@@ -167,8 +167,25 @@
 }
 
 
+/* === ADMIN: size + stock === */
+.size-selector label{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+}
 
 
+.size-selector input[type="number"]{
+    width:4.5rem;
+}
+
+
+
+.size-selector input[type="number"]{
+    display:inline-block;
+    width:4.5rem;
+    margin-left:.4rem;
+}
 
 
 

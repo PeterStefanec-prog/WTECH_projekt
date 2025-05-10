@@ -122,6 +122,7 @@
                 name="price"
                 class="form-control mb-3"
                 type="number"
+                step="0.01"
                 placeholder="Cena produktu..."
                 min="0"
                 value="{{ old('price', $product->price ?? '') }}"
@@ -197,20 +198,23 @@
                     $oldSizes = old('size', isset($product)
                                 ? $product->sizes->pluck('size')->toArray()
                                 : []);
+                    $oldStock  = old('stock', isset($product)
+                                ? $product->sizes->pluck('stock','size')->toArray() : []);
 
                 @endphp {{-- Vytiahne to pomocou pluck vlastne len atributy size teda XL, M, L ...  --}}
                 @foreach(['S','M','L','XL'] as $s)
                     <label>
-                        <input
-                            type="checkbox"
-                            name="size[]"
-                            value="{{ $s }}"
-                            {{ in_array($s, $oldSizes) ? 'checked' : '' }}
-                        ><span>{{ $s }}</span>
+                        <input type="checkbox" name="size[]" value="{{ $s }}"
+                            {{ in_array($s,$oldSizes)?'checked':'' }}>
+                        <span>{{ $s }}</span>
+
+                        <input type="number" name="stock[{{ $s }}]"
+                               value="{{ $oldStock[$s] ?? 0 }}" min="0" placeholder="0">
                     </label>
                 @endforeach
             </fieldset>
             @error('size') <div class="text-danger">{{ $message }}</div> @enderror
+            @error('stock') <div class="text-danger">{{ $message }}</div> @enderror
 
 
             {{-- DESCRIPTION --}}
