@@ -7,21 +7,26 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class ProductPhotoSeeder extends Seeder
+class ProductFromImagesSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1) clear existing tables
+        // 1) Clear out the tables
         DB::table('product_photos')->truncate();
         DB::table('product_sizes')->truncate();
         DB::table('products')->truncate();
 
+        // 2) Your domain data
         $baseDir    = public_path('images/products');
         $genders    = ['men','women','kids'];
         $categories = ['Clothes','Sport','Streetwear','Accessories','Sales'];
         $colors     = ['Red','Blue','Green','Black','White'];
-        $sizes      = ['S','M','L','XL'];
+        $brands     = ['Nike','Adidas','Puma'];
 
+        // create a simple counter
+        $itemNumber = 1;
+
+        // 3) Iterate every combination
         foreach ($genders as $g) {
             foreach ($categories as $c) {
                 foreach ($colors as $col) {
@@ -30,7 +35,7 @@ class ProductPhotoSeeder extends Seeder
                         continue;
                     }
 
-                    // 2) collect & sort all Color_*.jpg files
+                    // 4) Grab, filter & sort all Color_*.jpg files
                     $files = collect(File::files($folder))
                         ->filter(fn($f) => Str::startsWith($f->getFilename(), "{$col}_"))
                         ->sortBy(fn($f) => intval(
@@ -38,28 +43,33 @@ class ProductPhotoSeeder extends Seeder
                         ))
                         ->values();
 
-                    // 3) break into chunks of 4
+                    // 5) Break into groups of 4
                     $chunks = $files->chunk(4);
 
                     foreach ($chunks as $chunk) {
-                        // 4) create a product for this group of 4 images
-                        $now = now();
+                        // 6) Create one product per 4-image chunk
+                        $now   = now();
+                        $brand = $brands[array_rand($brands)];
+                        $name  = "{$c} {$col} Item {$itemNumber} - {$brand}";
+
                         $productId = DB::table('products')->insertGetId([
-                            'name'         => "{$col} {$c} ".Str::random(5),
-                            'description'  => "Auto‐seeded {$col} {$c} product",
-                            'price'        => rand(1000,9999)/100,
-                            'brand'        => 'AutoBrand',
+                            'name'         => $name,
+                            'description'  => "Auto-seeded {$c} {$col} product",
+                            'price'        => rand(1000,9999) / 100,
+                            'brand'        => $brand,
                             'gender'       => $g,
                             'category'     => $c,
                             'color'        => $col,
+                            'category_id'  => null,
                             'created_at'   => $now,
                             'updated_at'   => $now,
                         ]);
 
-                        // 5) attach the 4 images
+                        // 7) Attach exactly these 4 images
                         foreach ($chunk as $file) {
                             $filename = $file->getFilename();
                             $url = "/images/products/{$g}/{$c}/{$filename}";
+
                             DB::table('product_photos')->insert([
                                 'product_id' => $productId,
                                 'url'        => $url,
@@ -68,16 +78,19 @@ class ProductPhotoSeeder extends Seeder
                             ]);
                         }
 
-                        // 6) seed sizes/stock
-                        foreach ($sizes as $s) {
+                        // 8) Seed sizes with random stock
+                        foreach (['S','M','L','XL'] as $size) {
                             DB::table('product_sizes')->insert([
                                 'product_id' => $productId,
-                                'size'       => $s,
+                                'size'       => $size,
                                 'stock'      => rand(0,20),
                                 'created_at' => $now,
                                 'updated_at' => $now,
                             ]);
                         }
+
+                        // increment for next product
+                        $itemNumber++;
                     }
                 }
             }

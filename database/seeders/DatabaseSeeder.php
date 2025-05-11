@@ -10,11 +10,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
-            ProductSeeder::class,
-            ProductPhotoSeeder::class,
-            ProductSizeSeeder::class,
+//            ProductSeeder::class,
+//            ProductPhotoSeeder::class,
+//            ProductSizeSeeder::class,
+            ProductFromImagesSeeder::class,
             ShippingMethodSeeder::class,
             PaymentMethodSeeder::class
         ]);
+
     }
 }

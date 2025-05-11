@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         $colors = ['Red', 'Blue', 'Green', 'Black', 'White'];
         $brands = ['Nike', 'Adidas', 'Puma'];
 
-        for ($i = 1; $i <= 300; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             $cat    = $categories[($i - 1) % count($categories)];
             $gend   = $genders[($i - 1) % count($genders)];
             $color  = $colors[array_rand($colors)];
@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
             $price  = rand(1000, 9999) / 100; // between 10.00 and 99.99
 
             DB::table('products')->insert([
-                'name'           => ucfirst($cat) . " Item {$i}",
+                'name'           => ucfirst($cat) . " Item {$i}" . " - {$brand}",
                 'description'    => "Sample {$cat} item #{$i} for {$gend}",
                 'price'          => $price,
                 'brand'          => $brand,
